@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 300" width="380" height="300" data-anchor="bottom">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="113" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="1.3">
+</feGaussianBlur>
+</filter>
+</defs>
+<g filter="url(#i)">
+<path d="M154.3 306C154.4 302.6 154.6 292.5 154.7 285.8C154.8 279.2 154.8 272.5 154.8 265.9C154.8 259.3 154.8 252.7 154.7 246.1C154.6 239.5 154.4 233 154.2 226.5C154.1 220 153.8 213.5 153.6 207.1C153.3 200.7 153 194.3 152.6 187.9C152.3 181.5 151.9 175.2 151.4 168.8C151 162.5 150.2 153.1 150 150" fill="none" stroke="#000" stroke-width="2.4" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M289.4 306C289.3 303.7 288.8 296.7 288.5 292.1C288.3 287.5 288.1 282.9 287.9 278.4C287.7 273.8 287.6 269.3 287.6 264.8C287.5 260.4 287.5 255.9 287.5 251.5C287.5 247.1 287.6 242.7 287.7 238.3C287.8 234 288 229.7 288.2 225.4C288.4 221.1 288.7 216.8 289 212.6C289.3 208.4 289.8 202.1 290 200" fill="none" stroke="#000" stroke-width="2.4" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M68.9 306C68.5 301.8 67.3 289.2 66.7 280.8C66.1 272.5 65.6 264.2 65.2 255.9C64.8 247.6 64.6 239.3 64.4 231.1C64.2 222.9 64.2 214.7 64.2 206.5C64.2 198.3 64.4 190.2 64.7 182.1C64.9 174 65.3 165.9 65.8 157.9C66.3 149.8 66.9 141.8 67.6 133.8C68.3 125.9 69.6 114 70 110" fill="none" stroke="#000" stroke-width="2.4" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M249.9 306C250.2 301 251.1 286 251.5 276.1C252 266.2 252.4 256.3 252.7 246.4C253 236.5 253.2 226.7 253.4 216.8C253.5 207 253.6 197.3 253.6 187.5C253.6 177.8 253.5 168 253.4 158.3C253.2 148.7 253 139 252.7 129.4C252.4 119.8 252 110.2 251.6 100.6C251.1 91 250.3 76.8 250 72" fill="none" stroke="#000" stroke-width="2.4" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<ellipse cx="150" cy="150" rx="110" ry="40" transform="rotate(-8 150 150)" fill="#000" fill-opacity="0.42">
+</ellipse>
+<ellipse cx="150" cy="146" rx="64" ry="20" transform="rotate(-8 150 146)" fill="#000" fill-opacity="0.3">
+</ellipse>
+<ellipse cx="290" cy="200" rx="72" ry="26" transform="rotate(10 290 200)" fill="#000" fill-opacity="0.5">
+</ellipse>
+<ellipse cx="290" cy="197" rx="36" ry="11" transform="rotate(10 290 197)" fill="#000" fill-opacity="0.3">
+</ellipse>
+<path d="M40 116Q60 80 92 96Q80 112 70 130Q56 124 40 116Z" fill="#000" fill-opacity="0.7">
+</path>
+<path d="M250 76C252.1 73.4 249.9 63.2 244.2 58.6C238.4 54 217.6 46 215.5 48.6C213.5 51.3 226 69.7 231.7 74.3C237.5 78.8 247.9 78.6 250 76Z" fill="#000" fill-opacity=".1" stroke="#000" stroke-width="1.6" stroke-opacity=".8">
+</path>
+<path d="M250 76C253 74.6 255.5 64.4 252.3 57.8C249.1 51.2 233.9 34.9 230.9 36.4C227.9 37.8 231.1 59.9 234.3 66.5C237.5 73.1 247 77.4 250 76Z" fill="#000" fill-opacity=".1" stroke="#000" stroke-width="1.6" stroke-opacity=".8">
+</path>
+<path d="M250 76C253.3 76 260 67.9 260 60.6C260 53.3 253.3 32 250 32C246.7 32 240 53.3 240 60.6C240 67.9 246.7 76 250 76Z" fill="#000" fill-opacity=".1" stroke="#000" stroke-width="1.6" stroke-opacity=".8">
+</path>
+<path d="M250 76C253 77.4 262.5 73.1 265.7 66.5C268.9 59.9 272.1 37.8 269.1 36.4C266.1 34.9 250.9 51.2 247.7 57.8C244.5 64.4 247 74.6 250 76Z" fill="#000" fill-opacity=".1" stroke="#000" stroke-width="1.6" stroke-opacity=".8">
+</path>
+<path d="M250 76C252.1 78.6 262.5 78.8 268.3 74.3C274 69.7 286.5 51.3 284.5 48.6C282.4 46 261.6 54 255.8 58.6C250.1 63.2 247.9 73.4 250 76Z" fill="#000" fill-opacity=".1" stroke="#000" stroke-width="1.6" stroke-opacity=".8">
+</path>
+<path d="M250 76C252 76 256 71.6 256 67.6C256 63.6 252 52 250 52C248 52 244 63.6 244 67.6C244 71.6 248 76 250 76Z" fill="#000" fill-opacity="0.6">
+</path>
+<circle cx="156.1" cy="259" r="1.4" fill="#000" fill-opacity="0.8">
+</circle>
+<circle cx="156.4" cy="229.1" r="1.4" fill="#000" fill-opacity="0.8">
+</circle>
+<circle cx="154.1" cy="195.7" r="1.4" fill="#000" fill-opacity="0.8">
+</circle>
+<circle cx="150.9" cy="194.9" r="1.4" fill="#000" fill-opacity="0.8">
+</circle>
+<circle cx="147.8" cy="287" r="1.4" fill="#000" fill-opacity="0.8">
+</circle>
+<circle cx="145.8" cy="206.9" r="1.4" fill="#000" fill-opacity="0.8">
+</circle>
+</g>
+</svg>

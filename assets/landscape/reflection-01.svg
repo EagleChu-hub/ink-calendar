@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 120" width="700" height="120" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="55" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="1.2">
+</feGaussianBlur>
+</filter>
+<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="80">
+<stop offset="0" stop-color="#000" stop-opacity="0.7">
+</stop>
+<stop offset="1" stop-color="#000" stop-opacity="0">
+</stop>
+</linearGradient>
+<clipPath id="c">
+<rect x="-40" y="0" width="780" height="5.9">
+</rect>
+<rect x="-40" y="8.2" width="780" height="7">
+</rect>
+<rect x="-40" y="20.8" width="780" height="4.5">
+</rect>
+<rect x="-40" y="31.3" width="780" height="8.5">
+</rect>
+<rect x="-40" y="45.5" width="780" height="3.5">
+</rect>
+<rect x="-40" y="54.5" width="780" height="8.4">
+</rect>
+<rect x="-40" y="70.1" width="780" height="9.6">
+</rect>
+<rect x="-40" y="85.2" width="780" height="5">
+</rect>
+<rect x="-40" y="96.7" width="780" height="6.5">
+</rect>
+<rect x="-40" y="110.5" width="780" height="9.6">
+</rect>
+</clipPath>
+</defs>
+<g filter="url(#i)">
+<path clip-path="url(#c)" d="M-30 0L730 0C727.2 0.6 718.7 3.1 713.1 3.8C707.5 4.5 701.9 4 696.2 4.3C690.6 4.5 685 4.8 679.3 5.3C673.7 5.7 668.1 6.2 662.4 6.8C656.8 7.5 651.2 8.2 645.6 9C639.9 9.8 634.3 10.6 628.7 11.6C623 12.6 617.4 13.9 611.8 15.1C606.1 16.3 600.5 17.6 594.9 19C589.3 20.3 583.6 21.8 578 23.4C572.4 25 566.7 26.8 561.1 28.6C555.5 30.4 549.9 32.4 544.2 34.3C538.6 36.1 533 38 527.3 39.7C521.7 41.5 516.1 43.1 510.4 44.8C504.8 46.4 499.2 48.2 493.6 49.6C487.9 50.9 482.3 51.9 476.7 52.9C471 53.9 465.4 54.8 459.8 55.6C454.1 56.4 448.5 57.2 442.9 57.7C437.3 58.3 431.6 58.6 426 59C420.4 59.4 414.7 59.8 409.1 60.3C403.5 60.7 397.9 61.2 392.2 61.8C386.6 62.5 381 63.5 375.3 64.3C369.7 65.1 364.1 66.1 358.4 66.9C352.8 67.7 347.2 68.3 341.6 69.1C335.9 70 330.3 70.9 324.7 71.7C319 72.5 313.4 73.3 307.8 73.9C302.1 74.5 296.5 75.2 290.9 75.6C285.3 76 279.6 76.4 274 76.4C268.4 76.3 262.7 75.9 257.1 75.4C251.5 74.8 245.9 74 240.2 73C234.6 71.9 229 70.4 223.3 68.8C217.7 67.3 212.1 65.5 206.4 63.6C200.8 61.7 195.2 59.7 189.6 57.6C183.9 55.4 178.3 53.1 172.7 50.7C167 48.3 161.4 45.7 155.8 43.1C150.1 40.6 144.5 37.9 138.9 35.4C133.3 33 127.6 30.9 122 28.7C116.4 26.5 110.7 24.2 105.1 22.2C99.5 20.2 93.9 18.3 88.2 16.6C82.6 14.9 77 13.5 71.3 12.1C65.7 10.8 60.1 9.6 54.4 8.5C48.8 7.4 43.2 6.3 37.6 5.5C31.9 4.6 26.3 4 20.7 3.4C15 2.8 9.4 2.2 3.8 1.8C-1.9 1.4 -7.5 1.1 -13.1 0.9C-18.7 0.7 -27.2 0.7 -30 0.6Z" fill="url(#g)">
+</path>
+</g>
+</svg>

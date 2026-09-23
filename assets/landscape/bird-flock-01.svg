@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" seed="93" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+</filter>
+</defs>
+<g filter="url(#i)">
+<path d="M103.2 20.4Q111.6 16.2 120 26Q127 14.8 138.2 19Q127 18.3 120 28.2Q111.6 19.6 103.2 20.4Z" fill="#000" fill-opacity="0.8">
+</path>
+<path d="M82.4 38.8Q90.2 34.9 98 44Q104.5 33.6 114.9 37.5Q104.5 36.9 98 46.1Q90.2 38 82.4 38.8Z" fill="#000" fill-opacity="0.8">
+</path>
+<path d="M61.6 57.2Q68.8 53.6 76 62Q82 52.4 91.6 56Q82 55.4 76 63.9Q68.8 56.5 61.6 57.2Z" fill="#000" fill-opacity="0.8">
+</path>
+<path d="M40.8 75.6Q47.4 72.3 54 80Q59.5 71.2 68.3 74.5Q59.5 74 54 81.8Q47.4 74.9 40.8 75.6Z" fill="#000" fill-opacity="0.8">
+</path>
+<path d="M126.4 38.8Q134.2 34.9 142 44Q148.5 33.6 158.9 37.5Q148.5 36.9 142 46.1Q134.2 38 126.4 38.8Z" fill="#000" fill-opacity="0.8">
+</path>
+<path d="M149.6 57.2Q156.8 53.6 164 62Q170 52.4 179.6 56Q170 55.4 164 63.9Q156.8 56.5 149.6 57.2Z" fill="#000" fill-opacity="0.8">
+</path>
+<path d="M175.4 77.8Q181.7 74.7 188 82Q193.3 73.6 201.7 76.8Q193.3 76.2 188 83.7Q181.7 77.2 175.4 77.8Z" fill="#000" fill-opacity="0.8">
+</path>
+</g>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="73" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="8">
+</feGaussianBlur>
+</filter>
+</defs>
+<g filter="url(#i)">
+<ellipse cx="395" cy="99.5" rx="119.3" ry="30.2" transform="rotate(0 395 99.5)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="446.6" cy="66.5" rx="65.9" ry="28.7" transform="rotate(0 446.6 66.5)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="474" cy="76.4" rx="58.7" ry="37.5" transform="rotate(0 474 76.4)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="281" cy="80.7" rx="92.3" ry="34.8" transform="rotate(0 281 80.7)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="128.1" cy="78.9" rx="54.5" ry="29.8" transform="rotate(0 128.1 78.9)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="464.6" cy="82.4" rx="70.1" ry="44.6" transform="rotate(0 464.6 82.4)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="329.9" cy="98.4" rx="55.1" ry="46" transform="rotate(0 329.9 98.4)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="308.2" cy="94.6" rx="83.2" ry="47.4" transform="rotate(0 308.2 94.6)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="457.9" cy="85" rx="99" ry="42.6" transform="rotate(0 457.9 85)" fill="#000" fill-opacity="0.75">
+</ellipse>
+<ellipse cx="300" cy="96" rx="252" ry="32" transform="rotate(0 300 96)" fill="#000" fill-opacity="0.9">
+</ellipse>
+</g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 70" width="500" height="70" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" seed="54" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="0.5">
+</feGaussianBlur>
+</filter>
+</defs>
+<g filter="url(#i)">
+<path d="M292.6 22q13.9 -2.5 27.8 0t27.8 0" fill="none" stroke="#000" stroke-width="2.2" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M219.5 45.5q28.1 -2.5 56.2 0t56.2 0" fill="none" stroke="#000" stroke-width="3" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M394.6 13.6q20.1 -2.5 40.3 0t40.3 0" fill="none" stroke="#000" stroke-width="2" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M282.5 57.2q20.9 -2.5 41.7 0t41.7 0" fill="none" stroke="#000" stroke-width="2.4" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M305.3 31.6q15.7 -2.5 31.5 0t31.5 0" fill="none" stroke="#000" stroke-width="1.9" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M60.6 23.3q17.2 -2.5 34.4 0t34.4 0" fill="none" stroke="#000" stroke-width="1.8" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M125.6 27.8q34.7 -2.5 69.4 0t69.4 0" fill="none" stroke="#000" stroke-width="1.8" stroke-opacity="0.6" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M387.3 37q11.4 -2.5 22.8 0t22.8 0" fill="none" stroke="#000" stroke-width="1.6" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M208.5 56.2q9.1 -2.5 18.2 0t18.2 0" fill="none" stroke="#000" stroke-width="1.9" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M93.4 16.3q8.5 -2.5 17 0t17 0" fill="none" stroke="#000" stroke-width="2.7" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M30.8 9.6q21.3 -2.5 42.5 0t42.5 0" fill="none" stroke="#000" stroke-width="2.3" stroke-opacity="0.6" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M384.9 19.1q16.3 -2.5 32.7 0t32.7 0" fill="none" stroke="#000" stroke-width="2.6" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M236.5 57.7q21 -2.5 42 0t42 0" fill="none" stroke="#000" stroke-width="1.6" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M125.8 38.8q7.8 -2.5 15.5 0t15.5 0" fill="none" stroke="#000" stroke-width="2.9" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+</g>
+</svg>

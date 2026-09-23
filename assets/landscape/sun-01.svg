@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="81" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="1">
+</feGaussianBlur>
+</filter>
+<radialGradient id="g">
+<stop offset="0" stop-color="#000" stop-opacity=".95">
+</stop>
+<stop offset=".85" stop-color="#000" stop-opacity=".78">
+</stop>
+<stop offset="1" stop-color="#000" stop-opacity=".6">
+</stop>
+</radialGradient>
+</defs>
+<g filter="url(#i)">
+<circle cx="70" cy="70" r="56" fill="url(#g)">
+</circle>
+</g>
+</svg>

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "river-lone-boat", "name": "江上孤舟",
+    "intent": "平遠一河兩岸：左下重墨近岸與蘆葦，中段整片留白為江，遠山一抹。孤舟是畫眼。",
+    "seasons": ["spring", "summer", "autumn", "winter"], "time": ["day", "dusk", "night"],
+    "seal": { "x": 0.91, "y": 0.9 },
+    "layers": [
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.68, 0.8], "y": 0.2, "width": 0.09, "opacity": 0.85 },
+      { "asset": "moon-full-01", "only": "night", "color": "sun", "x": [0.68, 0.8], "y": 0.2, "width": 0.1, "opacity": 0.9 },
+      { "asset": "mountain-far-01", "tone": "far", "x": [0.45, 0.6], "y": 0.42, "width": 1.1, "scale": [0.9, 1.05], "opacity": 0.5, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.44, "width": 1.2, "opacity": 0.8 },
+      { "asset": "mountain-far-03", "tone": "far", "x": [0.75, 0.88], "y": 0.52, "width": 0.5, "opacity": 0.35, "flip": "random" },
+      { "asset": "lake-ripple-01", "tone": "mid", "x": [0.5, 0.62], "y": 0.64, "width": 0.55, "opacity": 0.5 },
+      { "asset": "boat-fisher-01", "tone": "near", "x": [0.55, 0.7], "y": 0.68, "width": 0.1, "opacity": 0.9, "flip": "random" },
+      { "asset": "bird-flock-01", "tone": "mid", "x": [0.25, 0.42], "y": [0.1, 0.16], "width": 0.17, "opacity": 0.6 },
+      { "asset": "slope-near-01", "tone": "near", "x": [0.18, 0.26], "y": 1, "width": 0.6, "opacity": 0.9 },
+      { "asset": "reed-01", "tone": "near", "x": [0.06, 0.14], "y": 0.99, "width": 0.16, "opacity": 0.8 }
+    ]
+  },
+  {
+    "id": "waterfall-valley", "name": "飛瀑幽谷",
+    "intent": "高崖米點皴、一道留白飛瀑、谷底霧氣吃掉山腳；右側近景松石與崖壁呼應。",
+    "seasons": ["spring", "summer", "autumn"], "time": ["day", "dusk"],
+    "seal": { "x": 0.08, "y": 0.92 },
+    "layers": [
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.78, 0.86], "y": 0.12, "width": 0.08, "opacity": 0.85 },
+      { "asset": "mountain-far-04", "tone": "far", "x": [0.65, 0.75], "y": 0.45, "width": 0.8, "opacity": 0.35, "flip": "random" },
+      { "asset": "mountain-mid-02", "tone": "mid", "x": [0.3, 0.34], "y": 0.82, "width": 0.5, "scale": [0.95, 1.05], "opacity": 0.8 },
+      { "asset": "waterfall-01", "tone": "mid", "x": [0.42, 0.44], "y": 0.88, "width": 0.18, "opacity": 0.75 },
+      { "asset": "mist-cloud-03", "role": "mist", "x": [0.25, 0.35], "y": 0.45, "width": 0.45, "opacity": 0.7 },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.5, "y": 0.8, "width": 1.1, "opacity": 0.9 },
+      { "asset": "slope-near-03", "tone": "near", "x": [0.76, 0.82], "y": 1, "width": 0.45, "opacity": 0.9, "flip": "random" },
+      { "asset": "pine-01", "tone": "near", "x": [0.7, 0.76], "y": 0.97, "width": 0.26, "opacity": 0.9 },
+      { "asset": "bird-pair-01", "tone": "mid", "x": [0.55, 0.65], "y": 0.15, "width": 0.1, "opacity": 0.6 }
+    ]
+  },
+  {
+    "id": "sunset-birds", "name": "夕照歸鳥",
+    "intent": "湖天一色，日沉遠山之後，倒影與水紋拉出水面；歸鳥成對。唯一允許朱紅日頭當主角的範本。",
+    "seasons": ["spring", "summer", "autumn", "winter"], "time": ["dusk", "day"],
+    "seal": { "x": 0.08, "y": 0.92 },
+    "layers": [
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.58, 0.72], "y": 0.3, "width": 0.12, "opacity": 0.85 },
+      { "asset": "sun-01", "only": "day", "tone": "far", "x": [0.58, 0.72], "y": 0.3, "width": 0.1, "opacity": 0.22 },
+      { "asset": "mountain-far-02", "tone": "far", "x": [0.35, 0.45], "y": 0.52, "width": 0.9, "opacity": 0.45, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.52, "width": 1.3, "opacity": 0.85 },
+      { "asset": "reflection-01", "tone": "far", "x": [0.35, 0.45], "y": 0.6, "width": 0.6, "opacity": 0.3 },
+      { "asset": "lake-ripple-01", "tone": "mid", "x": [0.55, 0.65], "y": 0.66, "width": 0.6, "opacity": 0.45 },
+      { "asset": "lake-ripple-02", "tone": "mid", "x": [0.25, 0.35], "y": 0.8, "width": 0.5, "opacity": 0.4 },
+      { "asset": "bird-pair-01", "tone": "mid", "x": [0.32, 0.45], "y": [0.16, 0.24], "width": 0.12, "opacity": 0.7, "flip": "random" },
+      { "asset": "slope-near-02", "tone": "near", "x": [0.55, 0.65], "y": 1, "width": 0.9, "opacity": 0.85, "flip": "random" },
+      { "asset": "reed-02", "tone": "near", "x": [0.85, 0.9], "y": 0.98, "width": 0.2, "opacity": 0.8 }
+    ]
+  },
+  {
+    "id": "snow-river", "name": "寒江雪嶺",
+    "intent": "雪山只染山陰與天，峰頂留白即雪；前景一枝圈梅，江上一舟。冬季專用。",
+    "seasons": ["winter"], "time": ["day", "night"],
+    "seal": { "x": 0.91, "y": 0.92 },
+    "layers": [
+      { "asset": "moon-crescent-01", "only": "night", "color": "sun", "x": [0.74, 0.84], "y": 0.15, "width": 0.08, "opacity": 0.9, "flip": "random" },
+      { "asset": "sun-01", "only": "day", "tone": "far", "x": [0.74, 0.84], "y": 0.15, "width": 0.08, "opacity": 0.2 },
+      { "asset": "snow-mountain-01", "tone": "mid", "x": [0.42, 0.5], "y": 0.62, "width": 0.95, "opacity": 0.85, "flip": "random" },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.5, "y": 0.63, "width": 1.1, "opacity": 0.8 },
+      { "asset": "lake-ripple-02", "tone": "mid", "x": [0.45, 0.55], "y": 0.72, "width": 0.45, "opacity": 0.35 },
+      { "asset": "boat-fisher-01", "tone": "near", "x": [0.55, 0.66], "y": 0.76, "width": 0.09, "opacity": 0.9, "flip": "random" },
+      { "asset": "plum-branch-01", "tone": "near", "x": [0.17, 0.23], "y": 1, "width": 0.42, "opacity": 0.9 }
+    ]
+  },
+  {
+    "id": "lotus-moon", "name": "荷塘月色",
+    "intent": "遠岸淡山與柳，塘面水紋，前景荷葉一大一小；夏夜滿月。",
+    "seasons": ["summer"], "time": ["night", "dusk"],
+    "seal": { "x": 0.92, "y": 0.92 },
+    "layers": [
+      { "asset": "moon-full-01", "only": "night", "color": "sun", "x": [0.66, 0.78], "y": 0.18, "width": 0.13, "opacity": 0.9 },
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.66, 0.78], "y": 0.18, "width": 0.1, "opacity": 0.85 },
+      { "asset": "mountain-far-03", "tone": "far", "x": [0.3, 0.4], "y": 0.45, "width": 0.7, "opacity": 0.3, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.47, "width": 1.2, "opacity": 0.9 },
+      { "asset": "willow-01", "tone": "far", "x": [0.86, 0.92], "y": 0.62, "width": 0.24, "opacity": 0.5 },
+      { "asset": "lake-ripple-01", "tone": "mid", "x": [0.45, 0.55], "y": 0.64, "width": 0.6, "opacity": 0.4 },
+      { "asset": "lotus-01", "tone": "near", "x": [0.66, 0.74], "y": 1.02, "width": 0.3, "opacity": 0.55, "flip": true },
+      { "asset": "lotus-01", "tone": "near", "x": [0.26, 0.34], "y": 1, "width": 0.42, "opacity": 0.8 }
+    ]
+  },
+  {
+    "id": "peach-stream", "name": "春溪桃花",
+    "intent": "溪水由遠而近蜿蜒、石橋橫過；左下桃枝斜出，一鳥點題。",
+    "seasons": ["spring"], "time": ["day"],
+    "seal": { "x": 0.92, "y": 0.93 },
+    "layers": [
+      { "asset": "mountain-far-01", "tone": "far", "x": [0.55, 0.65], "y": 0.38, "width": 1, "opacity": 0.35, "flip": "random" },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.5, "y": 0.4, "width": 1.2, "opacity": 0.85 },
+      { "asset": "mountain-mid-03", "tone": "mid", "x": [0.66, 0.74], "y": 0.62, "width": 0.6, "opacity": 0.5, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.63, "width": 1.2, "opacity": 0.8 },
+      { "asset": "stream-01", "tone": "mid", "x": [0.52, 0.58], "y": 0.99, "width": 0.6, "opacity": 0.7, "flip": "random" },
+      { "asset": "bridge-01", "tone": "near", "x": [0.55, 0.62], "y": 0.7, "width": 0.2, "opacity": 0.85 },
+      { "asset": "peach-branch-01", "tone": "near", "x": [0.16, 0.2], "y": 1, "width": 0.4, "opacity": 0.9 },
+      { "asset": "bird-single-01", "tone": "mid", "x": [0.66, 0.78], "y": [0.16, 0.24], "width": 0.05, "opacity": 0.7, "flip": "random" }
+    ]
+  },
+  {
+    "id": "maple-pavilion", "name": "秋林亭",
+    "intent": "中景米點山與坡上小亭，右上楓枝垂入畫面，雁行遠去。",
+    "seasons": ["autumn"], "time": ["day", "dusk"],
+    "seal": { "x": 0.92, "y": 0.92 },
+    "layers": [
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.12, 0.2], "y": 0.2, "width": 0.08, "opacity": 0.85 },
+      { "asset": "mountain-far-04", "tone": "far", "x": [0.3, 0.4], "y": 0.42, "width": 0.8, "opacity": 0.35, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.45, "width": 1.2, "opacity": 0.85 },
+      { "asset": "mountain-mid-01", "tone": "mid", "x": [0.66, 0.74], "y": 0.75, "width": 0.6, "opacity": 0.6, "flip": "random" },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.5, "y": 0.77, "width": 1.1, "opacity": 0.9 },
+      { "asset": "slope-near-01", "tone": "near", "x": [0.27, 0.33], "y": 1, "width": 0.55, "opacity": 0.9 },
+      { "asset": "pavilion-01", "tone": "near", "x": [0.24, 0.3], "y": 0.82, "width": 0.13, "opacity": 0.9 },
+      { "asset": "maple-branch-01", "tone": "near", "x": [0.8, 0.84], "y": 0.55, "width": 0.38, "opacity": 0.85 },
+      { "asset": "bird-flock-01", "tone": "mid", "x": [0.28, 0.38], "y": 0.14, "width": 0.15, "opacity": 0.55 }
+    ]
+  },
+  {
+    "id": "bamboo-spring", "name": "竹林聽泉",
+    "intent": "左側一叢竹立在石上，右側溪澗退向遠方；竹是唯一的直線，其餘都橫。",
+    "seasons": ["spring", "summer"], "time": ["day"],
+    "seal": { "x": 0.92, "y": 0.93 },
+    "layers": [
+      { "asset": "mountain-far-03", "tone": "far", "x": [0.65, 0.75], "y": 0.4, "width": 0.6, "opacity": 0.3, "flip": "random" },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.55, "y": 0.42, "width": 1.1, "opacity": 0.85 },
+      { "asset": "stream-01", "tone": "mid", "x": [0.58, 0.64], "y": 1, "width": 0.55, "opacity": 0.6, "flip": "random" },
+      { "asset": "bamboo-01", "tone": "near", "x": [0.16, 0.22], "y": 1, "width": 0.32, "scale": [0.9, 1], "opacity": 0.9, "flip": "random" },
+      { "asset": "slope-near-03", "tone": "near", "x": [0.12, 0.18], "y": 1, "width": 0.35, "opacity": 0.85 }
+    ]
+  },
+  {
+    "id": "willow-bridge", "name": "柳岸石橋",
+    "intent": "江流由遠而近展開，石橋跨在中段，右前方垂柳；平遠構圖的春夏版本。",
+    "seasons": ["spring", "summer"], "time": ["day", "dusk"],
+    "seal": { "x": 0.08, "y": 0.93 },
+    "layers": [
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.15, 0.25], "y": 0.2, "width": 0.08, "opacity": 0.85 },
+      { "asset": "mountain-far-01", "tone": "far", "x": [0.45, 0.55], "y": 0.4, "width": 1.1, "opacity": 0.35, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.42, "width": 1.2, "opacity": 0.85 },
+      { "asset": "river-bend-01", "tone": "mid", "x": 0.5, "y": 0.9, "width": 1, "opacity": 0.6, "flip": "random" },
+      { "asset": "bridge-01", "tone": "near", "x": [0.52, 0.6], "y": 0.62, "width": 0.24, "opacity": 0.85 },
+      { "asset": "willow-01", "tone": "near", "x": [0.8, 0.86], "y": 1, "width": 0.34, "opacity": 0.9 },
+      { "asset": "bird-pair-01", "tone": "mid", "x": [0.3, 0.4], "y": 0.18, "width": 0.1, "opacity": 0.6, "flip": "random" }
+    ]
+  },
+  {
+    "id": "pine-traveler", "name": "松下行旅",
+    "intent": "長坡上一株孤松，策杖行人走向松下；背後米點山與霧，遠山壓底。",
+    "seasons": ["spring", "summer", "autumn", "winter"], "time": ["day", "dusk"],
+    "seal": { "x": 0.08, "y": 0.93 },
+    "layers": [
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.78, 0.86], "y": 0.16, "width": 0.08, "opacity": 0.85 },
+      { "asset": "mountain-far-02", "tone": "far", "x": [0.6, 0.7], "y": 0.45, "width": 0.8, "opacity": 0.35, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.48, "width": 1.2, "opacity": 0.85 },
+      { "asset": "mountain-mid-04", "tone": "mid", "x": [0.26, 0.34], "y": 0.72, "width": 0.45, "opacity": 0.55, "flip": "random" },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.4, "y": 0.74, "width": 1.1, "opacity": 0.9 },
+      { "asset": "slope-near-02", "tone": "near", "x": [0.45, 0.55], "y": 1, "width": 0.95, "opacity": 0.9, "flip": "random" },
+      { "asset": "pine-02", "tone": "near", "x": [0.74, 0.8], "y": 0.95, "width": 0.22, "opacity": 0.9 },
+      { "asset": "traveler-01", "tone": "near", "x": [0.54, 0.6], "y": 0.9, "width": 0.035, "opacity": 0.9 },
+      { "asset": "bird-single-01", "tone": "mid", "x": [0.4, 0.5], "y": 0.15, "width": 0.04, "opacity": 0.6, "flip": "random" }
+    ]
+  },
+  {
+    "id": "misty-peaks", "name": "雲山米點",
+    "intent": "兩重米點山在雲中時隱時現，不見地面；一鶴穿雲。最接近「潑墨暈染」的一張。",
+    "seasons": ["spring", "summer", "autumn", "winter"], "time": ["day", "night"],
+    "seal": { "x": 0.92, "y": 0.93 },
+    "layers": [
+      { "asset": "moon-full-01", "only": "night", "color": "sun", "x": [0.15, 0.25], "y": 0.15, "width": 0.1, "opacity": 0.9 },
+      { "asset": "mountain-far-04", "tone": "far", "x": [0.65, 0.75], "y": 0.4, "width": 0.9, "opacity": 0.3, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.43, "width": 1.3, "opacity": 0.85 },
+      { "asset": "mountain-mid-01", "tone": "mid", "x": [0.26, 0.34], "y": 0.66, "width": 0.6, "opacity": 0.6, "flip": "random" },
+      { "asset": "mist-cloud-03", "role": "mist", "x": [0.45, 0.55], "y": 0.6, "width": 0.5, "opacity": 0.8 },
+      { "asset": "mountain-mid-03", "tone": "mid", "x": [0.7, 0.8], "y": 0.82, "width": 0.6, "opacity": 0.6, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.8, "width": 1.4, "opacity": 0.9 },
+      { "asset": "crane-01", "tone": "mid", "x": [0.62, 0.74], "y": [0.2, 0.28], "width": 0.1, "opacity": 0.75, "flip": "random" },
+      { "asset": "slope-near-02", "tone": "near", "x": [0.35, 0.45], "y": 1.02, "width": 0.9, "opacity": 0.7, "flip": "random" }
+    ]
+  },
+  {
+    "id": "reed-geese", "name": "蘆花雁影",
+    "intent": "水邊蘆花兩叢一疏一密，雁行掠過遠山；秋夕或秋夜。",
+    "seasons": ["autumn"], "time": ["dusk", "night"],
+    "seal": { "x": 0.74, "y": 0.93 },
+    "layers": [
+      { "asset": "moon-full-01", "only": "night", "color": "sun", "x": [0.7, 0.8], "y": 0.2, "width": 0.1, "opacity": 0.9 },
+      { "asset": "sun-01-red", "only": "dusk", "x": [0.7, 0.8], "y": 0.25, "width": 0.1, "opacity": 0.85 },
+      { "asset": "mountain-far-03", "tone": "far", "x": [0.45, 0.55], "y": 0.48, "width": 0.8, "opacity": 0.3, "flip": "random" },
+      { "asset": "mist-band-02", "role": "mist", "x": 0.5, "y": 0.5, "width": 1.2, "opacity": 0.85 },
+      { "asset": "lake-ripple-01", "tone": "mid", "x": [0.45, 0.55], "y": 0.64, "width": 0.7, "opacity": 0.4 },
+      { "asset": "bird-flock-01", "tone": "mid", "x": [0.3, 0.42], "y": 0.2, "width": 0.22, "opacity": 0.6 },
+      { "asset": "reed-02", "tone": "near", "x": [0.28, 0.32], "y": 1.02, "width": 0.18, "opacity": 0.6, "flip": true },
+      { "asset": "reed-02", "tone": "near", "x": [0.12, 0.17], "y": 1, "width": 0.24, "opacity": 0.9 },
+      { "asset": "reed-01", "tone": "near", "x": [0.9, 0.94], "y": 1, "width": 0.16, "opacity": 0.8, "flip": true }
+    ]
+  },
+  {
+    "id": "moon-river", "name": "月夜江山",
+    "intent": "夜江：遠山、滿月、水中碎月、一舟。深色主題的預設範本。",
+    "seasons": ["spring", "summer", "autumn", "winter"], "time": ["night"],
+    "seal": { "x": 0.08, "y": 0.93 },
+    "layers": [
+      { "asset": "moon-full-01", "color": "sun", "x": [0.66, 0.78], "y": 0.18, "width": 0.12, "opacity": 0.9 },
+      { "asset": "mountain-far-04", "tone": "far", "x": [0.35, 0.45], "y": 0.5, "width": 0.9, "opacity": 0.35, "flip": "random" },
+      { "asset": "mist-band-01", "role": "mist", "x": 0.5, "y": 0.52, "width": 1.3, "opacity": 0.85 },
+      { "asset": "lake-ripple-02", "color": "sun", "xFrom": 0, "x": 0.7, "y": 0.64, "width": 0.3, "opacity": 0.45 },
+      { "asset": "boat-fisher-01", "tone": "near", "x": [0.3, 0.4], "y": 0.74, "width": 0.09, "opacity": 0.9, "flip": "random" },
+      { "asset": "slope-near-02", "tone": "near", "x": [0.5, 0.6], "y": 1, "width": 0.9, "opacity": 0.7, "flip": "random" }
+    ]
+  }
+]

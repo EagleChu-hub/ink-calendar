@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 50" width="110" height="50" data-anchor="bottom">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" seed="121" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+</filter>
+</defs>
+<g filter="url(#i)">
+<path d="M4 36Q54 50 106 32Q62 41 4 36Z" fill="#000" fill-opacity="0.9">
+</path>
+<path d="M52 38L56 26L64 26L68 38Z" fill="#000" fill-opacity="0.85">
+</path>
+<path d="M48 27L60 19L72 27Z" fill="#000" fill-opacity="0.95">
+</path>
+<path d="M64 28L104 4" fill="none" stroke="#000" stroke-width="1.1" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M20 46h70" fill="none" stroke="#000" stroke-width="1.2" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round">
+</path>
+</g>
+</svg>

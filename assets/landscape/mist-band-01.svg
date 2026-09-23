@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 140" width="1300" height="140" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="3" seed="71" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="36" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="11">
+</feGaussianBlur>
+</filter>
+<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1300" y2="0">
+<stop offset="0" stop-color="#000" stop-opacity="0">
+</stop>
+<stop offset="0.25" stop-color="#000" stop-opacity="0.9">
+</stop>
+<stop offset="0.75" stop-color="#000" stop-opacity="0.9">
+</stop>
+<stop offset="1" stop-color="#000" stop-opacity="0">
+</stop>
+</linearGradient>
+</defs>
+<g filter="url(#i)">
+<path d="M0 70C15.5 67 61.9 56.3 92.9 52.2C123.8 48.1 154.8 46.6 185.7 45.6C216.7 44.6 247.6 47.4 278.6 46.5C309.5 45.6 340.5 44.8 371.4 40.2C402.4 35.6 433.3 20.9 464.3 19C495.2 17.1 526.2 28.7 557.1 28.8C588.1 28.8 619 21.4 650 19.3C681 17.2 711.9 14.9 742.9 16.2C773.8 17.5 804.8 24.8 835.7 27C866.7 29.1 897.6 27.2 928.6 28.9C959.5 30.6 990.5 33.1 1021.4 37.2C1052.4 41.3 1083.3 50.3 1114.3 53.4C1145.2 56.6 1176.2 53.4 1207.1 56.1C1238.1 58.9 1284.5 67.7 1300 70C1284.5 72.2 1238.1 81.3 1207.1 83C1176.2 84.7 1145.2 78.5 1114.3 80.3C1083.3 82 1052.4 92.6 1021.4 93.7C990.5 94.7 959.5 86 928.6 86.6C897.6 87.1 866.7 95.5 835.7 97.2C804.8 98.9 773.8 96.5 742.9 96.7C711.9 96.9 681 98.3 650 98.6C619 98.9 588.1 98.3 557.1 98.6C526.2 98.9 495.2 101.4 464.3 100.4C433.3 99.5 402.4 93.9 371.4 92.8C340.5 91.8 309.5 95.8 278.6 94.1C247.6 92.3 216.7 84.2 185.7 82.3C154.8 80.5 123.8 85 92.9 83C61.9 80.9 15.5 72.2 0 70Z" fill="url(#g)">
+</path>
+<ellipse cx="293.2" cy="63.7" rx="125.6" ry="23.8" transform="rotate(0 293.2 63.7)" fill="#000" fill-opacity="0.6">
+</ellipse>
+<ellipse cx="596.1" cy="59.3" rx="175.4" ry="23.8" transform="rotate(0 596.1 59.3)" fill="#000" fill-opacity="0.6">
+</ellipse>
+<ellipse cx="630.4" cy="69.8" rx="147.1" ry="35" transform="rotate(0 630.4 69.8)" fill="#000" fill-opacity="0.6">
+</ellipse>
+</g>
+</svg>

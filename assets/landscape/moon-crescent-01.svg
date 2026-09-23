@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" data-anchor="center">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="83" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="2" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="0.8">
+</feGaussianBlur>
+</filter>
+<mask id="m">
+<rect width="120" height="120" fill="#fff">
+</rect>
+<circle cx="78" cy="50" r="42" fill="#000">
+</circle>
+</mask>
+</defs>
+<g filter="url(#i)">
+<circle cx="60" cy="60" r="46" fill="#000" fill-opacity=".9" mask="url(#m)">
+</circle>
+</g>
+</svg>

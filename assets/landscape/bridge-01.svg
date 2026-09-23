@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 90" width="260" height="90" data-anchor="bottom">
+<defs>
+<filter id="i" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" seed="123" result="n">
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="d">
+</feDisplacementMap>
+<feGaussianBlur in="d" stdDeviation="0.6">
+</feGaussianBlur>
+</filter>
+</defs>
+<g filter="url(#i)">
+<path d="M-10 92C-18.3 87 -12.7 69.7 -6 64C0.7 58.3 20.7 56.3 30 58C39.3 59.7 47.7 68 50 74C52.3 80 54 91 44 94C34 97 -1.7 97 -10 92Z" fill="#000" fill-opacity="0.72">
+</path>
+<path d="M270 92C278 86.7 272.7 67.3 266 62C259.3 56.7 239 57.7 230 60C221 62.3 214 70.3 212 76C210 81.7 208.3 91.3 218 94C227.7 96.7 262 97.3 270 92Z" fill="#000" fill-opacity="0.72">
+</path>
+<path d="M30 62Q130 12 232 62" fill="none" stroke="#000" stroke-width="4.5" stroke-opacity="0.9" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M58 88Q130 20 204 88" fill="none" stroke="#000" stroke-width="3.4" stroke-opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M70 44.1v-9" fill="none" stroke="#000" stroke-width="1.4" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M100 37.4v-9" fill="none" stroke="#000" stroke-width="1.4" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M130 35v-9" fill="none" stroke="#000" stroke-width="1.4" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M160 37.1v-9" fill="none" stroke="#000" stroke-width="1.4" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+<path d="M190 43.5v-9" fill="none" stroke="#000" stroke-width="1.4" stroke-opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+</path>
+</g>
+</svg>

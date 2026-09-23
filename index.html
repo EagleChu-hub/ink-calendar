@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- ARTIFACT:START -->
+<title>水墨日曆</title>
+<meta name="description" content="每日一句古籍與白話短文的水墨風手機日曆">
+<meta name="theme-color" content="#E7E9E3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1011" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="水墨日曆">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+TC:wght@300;400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="app">
+  <div class="stage" id="stage">
+    <canvas id="card" class="card" role="img" aria-labelledby="card-text"></canvas>
+  </div>
+  <div id="card-text" class="sr-only" aria-live="polite"></div>
+
+  <nav class="bar" aria-label="日期">
+    <button type="button" id="prev" class="btn icon" aria-label="前一天">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <label class="date-pick" for="date-input">
+      <span id="date-label">—</span>
+      <input type="date" id="date-input" aria-label="選擇日期">
+    </label>
+    <button type="button" id="today" class="btn text">今天</button>
+    <button type="button" id="save" class="btn text primary">存圖</button>
+    <button type="button" id="next" class="btn icon" aria-label="後一天">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </nav>
+  <button type="button" id="about" class="about-link">關於與授權</button>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <p class="sheet-title" id="sheet-title">9:16 圖卡</p>
+    <img id="sheet-img" alt="今日圖卡">
+    <p class="sheet-hint" id="sheet-hint">手機上長按圖片即可儲存或分享。</p>
+    <div class="sheet-actions">
+      <button type="button" id="sheet-share" class="btn text primary" hidden>分享</button>
+      <button type="button" id="sheet-download" class="btn text">下載 PNG</button>
+      <button type="button" id="sheet-close" class="btn text">關閉</button>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="about-sheet" hidden>
+  <div class="sheet-inner about" role="dialog" aria-modal="true" aria-labelledby="about-title">
+    <p class="sheet-title" id="about-title">水墨日曆</p>
+    <p>每天一句古籍原文，搭配一段白話短文。收錄 2026 年 9 月 23 日至 2027 年 12 月 31 日，共 465 天。</p>
+    <dl>
+      <dt>古籍原文</dt>
+      <dd>道德經、易經、論語、莊子、金剛經（鳩摩羅什譯）、中庸、大學、六祖壇經、心經，皆屬公有領域。原文以 GitHub 上的 chtxt、chinese-ancient-text、chisong 文本逐字校對，並以通行本勘誤。</dd>
+      <dt>白話短文</dt>
+      <dd>原創撰寫。</dd>
+      <dt>山水與印章</dt>
+      <dd>水墨山水元素、場景範本、落款章與圖示由 Claude Design 繪製。</dd>
+      <dt>落款篆字</dt>
+      <dd>崇羲篆體，中央研究院小學堂，CC BY-ND 3.0 TW。</dd>
+      <dt>字型</dt>
+      <dd>霞鶩文楷 TC（LXGW WenKai TC）、思源宋體 TC（Noto Serif TC），SIL Open Font License。</dd>
+      <dt>農曆與節氣</dt>
+      <dd>lunar-javascript（6tail），MIT License。</dd>
+    </dl>
+    <div class="sheet-actions">
+      <button type="button" id="about-close" class="btn text">關閉</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/vendor/lunar.js"></script>
+<script src="js/lunar-info.js"></script>
+<script src="js/ink.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/card.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+<!-- ARTIFACT:END -->
+</body>
+</html>

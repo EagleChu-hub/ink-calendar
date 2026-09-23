@@ -1,0 +1,12 @@
+# 交接包與設計原檔（不需要上線）
+handoff-claude-design/
+水墨日曆_Claude-Design交接包/
+水墨日曆_Claude-Design交接包.zip
+水墨日曆 App 設計/
+# 產生的檔案
+dist/
+.claude/
+__pycache__/
+# 校對用古籍原文：來自他人文庫，用 python tools/fetch_sources.py 下載
+sources/*
+!sources/errata.txt
