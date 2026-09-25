@@ -46,7 +46,6 @@
     if (lastUrl) URL.revokeObjectURL(lastUrl);
     lastUrl = URL.createObjectURL(blob);
     img.src = lastUrl;
-    setHint('手機上長按圖片即可儲存或分享。');
 
     // Artifact 裡若平台不提供下載，就只留長按圖片的方式
     dl.hidden = inArtifact && !platformDownloads;
@@ -66,6 +65,10 @@
     const file = new File([blob], filename, { type: 'image/png' });
     const canShare = !!(navigator.canShare && navigator.canShare({ files: [file] }));
     share.hidden = !canShare;
+    // 兩種分享的差別要講清楚：一個帶圖卡，一個帶文字和連結（連結的預覽圖是這一天的縮圖）
+    setHint(canShare
+      ? '「分享圖片」會附上圖卡；Threads、LINE 會附上這一天的句子和連結。'
+      : 'Threads、LINE 會附上這一天的句子和連結。手機上也可以長按圖片儲存。');
     share.onclick = async () => {
       try {
         await navigator.share({ files: [file], title: '水墨日曆' });

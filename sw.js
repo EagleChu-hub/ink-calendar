@@ -1,6 +1,6 @@
 // 離線快取：網頁、程式與每月內容用「先網路、失敗再用快取」；圖片、字型等素材用「先快取、背景更新」。
 // 改版時把 VERSION 加一，舊快取會自動清掉。
-const VERSION = 'ink-calendar-v9';
+const VERSION = 'ink-calendar-v10';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'css/style.css',
   'js/vendor/lunar.js', 'js/lunar-info.js', 'js/ink.js', 'js/scene.js', 'js/card.js', 'js/export.js', 'js/app.js', 'js/remind.js',

@@ -93,6 +93,7 @@
     scene = prepared;
     draw(canvas.getContext('2d'), canvas.width / Card.W);
     canvas.classList.remove('fading');
+    document.documentElement.dataset.rendered = keyOf(current); // 給 tools/build_share.py 判斷這一天畫完了
   }
 
   function go(days) {
@@ -112,6 +113,8 @@
     const [y, m, d] = e.target.value.split('-').map(Number);
     if (y && m && d) { current = new Date(y, m - 1, d); render(); }
   });
+  // 網址的 #YYYYMMDD 改變時換到那一天（點推播通知、分享連結時會用到）
+  window.addEventListener('hashchange', () => { current = startDate(); render(); });
   document.addEventListener('keydown', (e) => {
     if (!$('sheet').hidden || !$('about-sheet').hidden || !$('remind-sheet').hidden || e.target.tagName === 'INPUT') return;
     if (e.key === 'ArrowLeft') go(-1);
@@ -130,6 +133,7 @@
 
   $('save').addEventListener('click', async () => {
     const btn = $('save');
+    const label = btn.innerHTML; // 按鈕裡有分享圖示，不能只存文字
     btn.disabled = true;
     btn.textContent = '產生中…';
     try {
@@ -138,14 +142,17 @@
       CardExport.openSheet(blob, `水墨日曆-${i.year}${pad(i.month)}${pad(i.day)}.png`, shareInfo(i));
     } finally {
       btn.disabled = false;
-      btn.textContent = '存圖';
+      btn.innerHTML = label;
     }
   });
 
-  // 分享到脆、LINE 的文字與連結；連結帶 #YYYYMMDD，點開就是這一天
+  // 分享到 Threads、LINE 的文字與連結。有內容的日子連到 d/YYYYMMDD.html：
+  // 那是 tools/build_share.py 產生的靜態頁，帶有這一天的預覽圖，打開後會自動跳回日曆的這一天。
   function shareInfo(i) {
     const e = entryOf(current);
-    const url = `${location.origin}${location.pathname}#${i.year}${pad(i.month)}${pad(i.day)}`;
+    const ymd = `${i.year}${pad(i.month)}${pad(i.day)}`;
+    const base = `${location.origin}${location.pathname.replace(/index\.html$/, '')}`;
+    const url = e ? `${base}d/${ymd}.html` : `${base}#${ymd}`;
     if (!e) return { text: '水墨日曆', url };
     return { text: `${e.title ? e.title + '｜' : ''}${e.quote}${e.source ? '── ' + e.source : ''}`, url };
   }
