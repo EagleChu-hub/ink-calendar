@@ -6,6 +6,14 @@
 <!-- ARTIFACT:START -->
 <title>水墨日曆</title>
 <meta name="description" content="每日一句古籍與白話短文的水墨風手機日曆">
+<meta property="og:type" content="website">
+<meta property="og:title" content="水墨日曆">
+<meta property="og:description" content="每日一句古籍與白話短文的水墨風手機日曆">
+<meta property="og:url" content="https://eaglechu-hub.github.io/ink-calendar/">
+<meta property="og:image" content="https://eaglechu-hub.github.io/ink-calendar/icons/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#E7E9E3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0D1011" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
@@ -40,7 +48,11 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
     </button>
   </nav>
-  <button type="button" id="about" class="about-link">關於與授權</button>
+  <div class="links">
+    <button type="button" id="remind" class="about-link">每日提醒</button>
+    <span aria-hidden="true">・</span>
+    <button type="button" id="about" class="about-link">關於與授權</button>
+  </div>
 </main>
 
 <div class="sheet" id="sheet" hidden>
@@ -49,9 +61,26 @@
     <img id="sheet-img" alt="今日圖卡">
     <p class="sheet-hint" id="sheet-hint">手機上長按圖片即可儲存或分享。</p>
     <div class="sheet-actions">
-      <button type="button" id="sheet-share" class="btn text primary" hidden>分享</button>
+      <button type="button" id="sheet-share" class="btn text primary" hidden>分享圖卡</button>
+      <button type="button" id="share-threads" class="btn text">脆</button>
+      <button type="button" id="share-line" class="btn text">LINE</button>
       <button type="button" id="sheet-download" class="btn text">下載 PNG</button>
       <button type="button" id="sheet-close" class="btn text">關閉</button>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="remind-sheet" hidden>
+  <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="remind-title">
+    <p class="sheet-title" id="remind-title">每日提醒</p>
+    <label class="remind-row" for="remind-hour">提醒時間
+      <select id="remind-hour"></select>
+    </label>
+    <p class="sheet-hint" id="remind-status" aria-live="polite"></p>
+    <div class="sheet-actions">
+      <button type="button" id="remind-on" class="btn text primary">開啟提醒</button>
+      <button type="button" id="remind-off" class="btn text" hidden>取消提醒</button>
+      <button type="button" id="remind-close" class="btn text">關閉</button>
     </div>
   </div>
 </div>
@@ -63,6 +92,8 @@
     <dl>
       <dt>古籍原文</dt>
       <dd>道德經、易經、論語、莊子、金剛經（鳩摩羅什譯）、中庸、大學、六祖壇經、心經，皆屬公有領域。原文以 GitHub 上的 chtxt、chinese-ancient-text、chisong 文本逐字校對，並以通行本勘誤。</dd>
+      <dt>每日提醒</dt>
+      <dd>開啟後，只會把瀏覽器產生的推播位址與你選的時間存在 Cloudflare Workers，用來每天送出通知；不收集姓名、帳號或其他資料。取消提醒就會刪除。</dd>
       <dt>白話短文</dt>
       <dd>原創撰寫。</dd>
       <dt>山水與印章</dt>
@@ -87,6 +118,7 @@
 <script src="js/card.js"></script>
 <script src="js/export.js"></script>
 <script src="js/app.js"></script>
+<script src="js/remind.js"></script>
 <!-- ARTIFACT:END -->
 </body>
 </html>

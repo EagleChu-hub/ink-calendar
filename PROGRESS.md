@@ -26,7 +26,7 @@
 ## 更新流程
 1. 改內容 → `python tools/validate.py`
 2. `sw.js` VERSION 加一
-3. `git add -A` → `git commit` → `git push`（gh CLI 在 `%LOCALAPPDATA%\gh-cli\bin\gh.exe`，已登入 EagleChu-hub）
+3. `git add -A` → `git commit` → `git push`（家裡電腦：gh 在 PATH 上（`C:\Program Files\GitHub CLI\gh.exe`），已登入 EagleChu-hub；學校電腦是 `%LOCALAPPDATA%\gh-cli\bin\gh.exe`）
 4. 若要同步 Artifact：`python tools/build_artifact.py`，再用同一 URL 重新發布
 
 ## 備忘 / 待辦（可選）
@@ -34,3 +34,9 @@
 - 153 個標題為 Claude 改寫，使用者可自行瀏覽 `data/quotes/` 調整。
 - 崇羲篆體授權 CC BY-ND 3.0 TW，已在「關於與授權」標示。
 - 本機未上傳的資料：`水墨日曆 App 設計/`（設計原檔）、`handoff-claude-design/`、交接包 zip、`dist/`、`sources/` 原文。
+
+## 2026-09-25：每日提醒＋分享到脆／LINE
+- 跟空鏡日曆一起做，細節見 `動畫語錄日曆\進度備忘.md` 的同名段落，以及 `日曆推播\README.md`。
+- sw.js VERSION 已改成 `ink-calendar-v8`（還沒 push）。
+- 家裡電腦沒有 opencc，`tools/validate.py` 跑不起來（`pip install opencc` 後才能跑）。這次沒改 data/，已用 git diff 確認。
+- Artifact 版沒有同步；提醒功能在 Artifact 裡會顯示「這個預覽環境不能開啟推播」。

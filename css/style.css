@@ -168,10 +168,28 @@ body {
   color: var(--ink-soft);
   background: none;
   border: 0;
-  padding: 4px 12px;
-  margin-top: -6px;
+  padding: 4px 8px;
   cursor: pointer;
 }
+.links {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  margin-top: -6px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.remind-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; }
+.remind-row select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  min-height: 44px;
+  padding: 0 10px;
+}
+.remind-row select:focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; }
 .about-link:hover { color: var(--ink); }
 .about-link:focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; border-radius: 4px; }
 

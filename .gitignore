@@ -10,3 +10,5 @@ __pycache__/
 # 校對用古籍原文：來自他人文庫，用 python tools/fetch_sources.py 下載
 sources/*
 !sources/errata.txt
+
+分享文案.md

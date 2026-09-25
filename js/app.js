@@ -113,7 +113,7 @@
     if (y && m && d) { current = new Date(y, m - 1, d); render(); }
   });
   document.addEventListener('keydown', (e) => {
-    if (!$('sheet').hidden || !$('about-sheet').hidden || e.target.tagName === 'INPUT') return;
+    if (!$('sheet').hidden || !$('about-sheet').hidden || !$('remind-sheet').hidden || e.target.tagName === 'INPUT') return;
     if (e.key === 'ArrowLeft') go(-1);
     if (e.key === 'ArrowRight') go(1);
   });
@@ -135,12 +135,20 @@
     try {
       const blob = await CardExport.makeImage((ctx) => draw(ctx, 1));
       const i = LunarInfo.info(current);
-      CardExport.openSheet(blob, `水墨日曆-${i.year}${pad(i.month)}${pad(i.day)}.png`);
+      CardExport.openSheet(blob, `水墨日曆-${i.year}${pad(i.month)}${pad(i.day)}.png`, shareInfo(i));
     } finally {
       btn.disabled = false;
       btn.textContent = '存圖';
     }
   });
+
+  // 分享到脆、LINE 的文字與連結；連結帶 #YYYYMMDD，點開就是這一天
+  function shareInfo(i) {
+    const e = entryOf(current);
+    const url = `${location.origin}${location.pathname}#${i.year}${pad(i.month)}${pad(i.day)}`;
+    if (!e) return { text: '水墨日曆', url };
+    return { text: `${e.title ? e.title + '｜' : ''}${e.quote}${e.source ? '── ' + e.source : ''}`, url };
+  }
 
   // 關於與授權
   const aboutSheet = $('about-sheet');

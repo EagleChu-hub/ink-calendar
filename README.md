@@ -4,7 +4,12 @@
 
 - 網站（GitHub Pages，可加入主畫面、離線使用）：https://eaglechu-hub.github.io/ink-calendar/
 - claude.ai 私人連結：https://claude.ai/artifact/8YMKxUYNaqAu3JuUEuzfoc
-- 純前端，不需要伺服器，也不需要 build 工具。
+- 純前端，不需要 build 工具。只有「每日提醒」推播由另一個 Cloudflare Worker（calendar-push）送出。
+
+## 每日提醒與分享
+
+- 每日提醒：底部「每日提醒」選時間後開啟，每天在該整點（台北時間）收到當天的原文推播。iPhone 需 iOS 16.4 以上，並先「加入主畫面」再從主畫面開啟。Worker 只儲存瀏覽器的推播位址與時間。
+- 分享：「存圖」面板可以用系統分享把圖卡傳到脆、LINE，或按「脆」「LINE」分享當天的文字與連結（連結帶 `#YYYYMMDD`，點開就是那一天）。
 
 ## 資料夾
 

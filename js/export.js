@@ -37,7 +37,8 @@
     document.getElementById('sheet-hint').textContent = text;
   }
 
-  function openSheet(blob, filename) {
+  // shareInfo：{ text, url }，給「脆」「LINE」按鈕用（只能帶文字與連結，圖卡要走上面的系統分享）
+  function openSheet(blob, filename, shareInfo) {
     const sheet = document.getElementById('sheet');
     const img = document.getElementById('sheet-img');
     const dl = document.getElementById('sheet-download');
@@ -73,8 +74,18 @@
       }
     };
 
+    const info = shareInfo || { text: '', url: location.href };
+    document.getElementById('share-threads').onclick = () => openShare(
+      `https://www.threads.com/intent/post?text=${encodeURIComponent(info.text)}&url=${encodeURIComponent(info.url)}`);
+    document.getElementById('share-line').onclick = () => openShare(
+      `https://line.me/R/share?text=${encodeURIComponent(info.text + '\n' + info.url)}`);
+
     sheet.hidden = false;
     document.getElementById('sheet-close').focus();
+  }
+
+  function openShare(url) {
+    window.open(url, '_blank', 'noopener');
   }
 
   function closeSheet() {
