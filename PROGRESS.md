@@ -1,6 +1,6 @@
 # 水墨日曆：專案進度與備忘
 
-最後更新：2026-09-23
+最後更新：2026-09-25
 
 ## 現況（已完成、已上線）
 - 網站（GitHub Pages）：https://eaglechu-hub.github.io/ink-calendar/
@@ -46,3 +46,8 @@
 - `tools/build_share.py` 產生 `d/` 分享頁和 `og/` 預覽圖（465 天）。**改過內容後要重跑，再用 `--check` 檢查。**
 - 補上 hashchange 監聽（以前點通知換 `#日期` 不會換頁）。
 - sw.js VERSION 改成 `ink-calendar-v10`。
+
+## ★ 目前狀態（2026-09-25 收工）
+- 最新提交 7154c73，sw ink-calendar-v10，已上線並用 curl 比對過。
+- 改內容流程：改 data → validate（需要 opencc）→ `python tools/build_share.py` → `--check` → sw VERSION 加一 → push。
+- 推播與分享的細節見 `動畫語錄日曆\進度備忘.md` 最後的「目前狀態總覽」。
