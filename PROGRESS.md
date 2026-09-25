@@ -7,7 +7,7 @@
 - repository（公開）：https://github.com/EagleChu-hub/ink-calendar ，分支 `main`
 - claude.ai 私人連結：https://claude.ai/artifact/8YMKxUYNaqAu3JuUEuzfoc （第 7 版；已宣告 downloads 能力）
 - 內容：2026-09-23 至 2027-12-31 共 465 則，全部通過 `tools/validate.py`
-- 離線快取版本：`sw.js` 的 `VERSION = 'ink-calendar-v7'`
+- 離線快取版本：`sw.js` 的 `VERSION = 'ink-calendar-v8'`
 
 ## 版面決策（使用者已確認，勿改回）
 - 日期在左（使用者不喜歡日期在右）。
@@ -37,6 +37,6 @@
 
 ## 2026-09-25：每日提醒＋分享到脆／LINE
 - 跟空鏡日曆一起做，細節見 `動畫語錄日曆\進度備忘.md` 的同名段落，以及 `日曆推播\README.md`。
-- sw.js VERSION 已改成 `ink-calendar-v8`（還沒 push）。
+- sw.js VERSION 已改成 `ink-calendar-v8`；2026-09-25 已 push（dc7f380）並上線。
 - 家裡電腦沒有 opencc，`tools/validate.py` 跑不起來（`pip install opencc` 後才能跑）。這次沒改 data/，已用 git diff 確認。
 - Artifact 版沒有同步；提醒功能在 Artifact 裡會顯示「這個預覽環境不能開啟推播」。
