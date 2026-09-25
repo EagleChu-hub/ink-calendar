@@ -1,6 +1,6 @@
-// 離線快取：程式與素材用「先快取、背景更新」，每月內容用「先網路、失敗再用快取」。
+// 離線快取：網頁、程式與每月內容用「先網路、失敗再用快取」；圖片、字型等素材用「先快取、背景更新」。
 // 改版時把 VERSION 加一，舊快取會自動清掉。
-const VERSION = 'ink-calendar-v8';
+const VERSION = 'ink-calendar-v9';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'css/style.css',
   'js/vendor/lunar.js', 'js/lunar-info.js', 'js/ink.js', 'js/scene.js', 'js/card.js', 'js/export.js', 'js/app.js', 'js/remind.js',
@@ -25,16 +25,22 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET') return;
 
-  // 每月內容：先拿最新的，離線時用快取
-  if (url.origin === location.origin && url.pathname.includes('/data/quotes/')) {
+  // 網頁、程式、樣式、每月內容：先拿最新的，離線時才用快取。
+  // （以前網頁也是先用快取，改版後第一次打開還會看到舊版）
+  const fresh = url.origin === location.origin && (
+    e.request.mode === 'navigate' || url.pathname.endsWith('/') ||
+    /\.(html|js|css|webmanifest)$/.test(url.pathname) || url.pathname.includes('/data/quotes/'));
+  if (fresh) {
     e.respondWith(
       fetch(e.request)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(VERSION).then((c) => c.put(e.request, copy));
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(VERSION).then((c) => c.put(e.request, copy));
+          }
           return res;
         })
-        .catch(() => caches.match(e.request)),
+        .catch(() => caches.match(e.request, { ignoreSearch: true })),
     );
     return;
   }
