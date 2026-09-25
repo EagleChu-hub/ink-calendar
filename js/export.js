@@ -22,6 +22,10 @@
     return toBlob(canvas);
   }
 
+  // iPadOS 13 以後會自稱 Mac，要用觸控點數分辨
+  const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
   let lastUrl = null;
 
   function browserDownload(url, filename) {
@@ -49,7 +53,16 @@
 
     // Artifact 裡若平台不提供下載，就只留長按圖片的方式
     dl.hidden = inArtifact && !platformDownloads;
+    const file = new File([blob], filename, { type: 'image/png' });
+    const canShare = !!(navigator.canShare && navigator.canShare({ files: [file] }));
+    // iPhone／iPad 的瀏覽器下載會存進「檔案」App，不會進相簿；
+    // 改叫出系統分享選單，裡面的「儲存影像」會直接存進照片。
+    const saveViaShare = canShare && IS_IOS && !inArtifact;
     dl.onclick = async () => {
+      if (saveViaShare) {
+        try { await navigator.share({ files: [file] }); } catch (e) { /* 使用者取消 */ }
+        return;
+      }
       if (!platformDownloads) { browserDownload(lastUrl, filename); return; }
       try {
         await platformDownloads.save({ filename, data: blob });
@@ -62,13 +75,13 @@
       }
     };
 
-    const file = new File([blob], filename, { type: 'image/png' });
-    const canShare = !!(navigator.canShare && navigator.canShare({ files: [file] }));
     share.hidden = !canShare;
     // 兩種分享的差別要講清楚：一個帶圖卡，一個帶文字和連結（連結的預覽圖是這一天的縮圖）
-    setHint(canShare
-      ? '「分享圖片」會附上圖卡；Threads、LINE 會附上這一天的句子和連結。'
-      : 'Threads、LINE 會附上這一天的句子和連結。手機上也可以長按圖片儲存。');
+    setHint(saveViaShare
+      ? '「儲存圖片」→ 在選單點「儲存影像」就會存進照片。Threads、LINE 會附上這一天的句子和連結。'
+      : canShare
+        ? '「分享圖片」會附上圖卡；Threads、LINE 會附上這一天的句子和連結。'
+        : 'Threads、LINE 會附上這一天的句子和連結。手機上也可以長按圖片儲存。');
     share.onclick = async () => {
       try {
         await navigator.share({ files: [file], title: '水墨日曆' });
