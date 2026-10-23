@@ -76,6 +76,9 @@ def load_sections() -> list[tuple[list[str], str]]:
     return [([norm(x) for x in need], text) for need, text in out]
 
 
+CHAPTERED = ("道德經", "論語", "六祖壇經", "金剛經", "莊子", "易經")
+
+
 def main() -> int:
     partial = "--partial" in sys.argv
     quotes: dict[str, dict] = {}
@@ -88,6 +91,9 @@ def main() -> int:
     corpus = load_corpus()
     sections = load_sections()
     errors: list[str] = []
+    # 有分篇章的書，原文卻對不到任何一段時，篇章等於沒檢查：要在人工核對清單上才放行
+    manual = {ln.strip() for ln in (ROOT / "tools" / "篇章人工核對.txt").read_text(encoding="utf-8").splitlines()
+              if ln.strip() and not ln.startswith("#")}
 
     if not partial:
         d = START
@@ -117,6 +123,9 @@ def main() -> int:
             errors.append(f"{key}: 原文找不到 —「{q.get('quote')}」（{q.get('source')}）")
         src = norm(q.get("source", ""))
         hits = [need for need, text in sections if n in text]
+        if not hits and q.get("source", "").startswith(CHAPTERED) and f"{key}|{q.get('source')}" not in manual:
+            errors.append(f"{key}: 出處「{q.get('source')}」無法自動核對篇章（用字和文庫分段不同）。"
+                          f"請人工核對後加進 tools/篇章人工核對.txt")
         if hits and not any(all(x in src for x in need) for need in hits):
             where = "、".join("・".join(need) for need in hits)
             errors.append(f"{key}: 出處「{q.get('source')}」可能有誤，文庫中這句在：{where}")
