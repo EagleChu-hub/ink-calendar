@@ -61,3 +61,10 @@
 - validate 需要的 opencc：`pip install opencc-python-reimplemented` 可用。
 - 2026-10-24 依人事總處《116年政府行政機關辦公日曆表》核對 2027 全年：平日放假日、節氣、農曆節日（臘八 1/15、元宵 2/20、端午 6/9、
   七夕與立秋與父親節同在 8/8、中元 8/16、中秋 9/15、重陽與寒露同在 10/8）都與短文一致。只改了 2027-02-11（開工日卻寫「珍惜這幾天團聚」）。
+
+## ★ 目前狀態（2026-10-24 收工；取代上面 09-25 那段）
+- 最新提交 b78c9a8，sw ink-calendar-v13，已上線並用 curl 確認。
+- 465 則已完成審稿；2027 全年已對照 116 年辦公日曆表。
+- 改內容流程：改 data → `python tools/validate.py`（需要 `pip install opencc-python-reimplemented`）→ `python tools/build_share.py 日期…` → `--check` → sw VERSION 加一 → push。
+  validate 若報「無法自動核對篇章」，人工核對後加進 `tools/篇章人工核對.txt`。
+- 推播與分享的細節見 `動畫語錄日曆\進度備忘.md` 最後的「★★ 目前狀態總覽」。
