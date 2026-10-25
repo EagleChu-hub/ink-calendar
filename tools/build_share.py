@@ -184,7 +184,7 @@ def render_cards(keys):
             pg.goto(f'http://localhost:{PORT}/#{ymd(keys[0])}')
             pg.wait_for_function(f"document.documentElement.dataset.rendered === '{keys[0]}'", timeout=60000)
             # 攔下存圖面板，改成把 PNG 交給這支程式
-            pg.evaluate("""() => { CardExport.openSheet = (blob) => {
+            pg.evaluate("""() => { CardExport.openSheet = ({ story: blob }) => {
               const r = new FileReader(); r.onload = () => { window.__png = r.result.split(',')[1]; }; r.readAsDataURL(blob); }; }""")
             for key in keys:
                 pg.evaluate(f"() => {{ window.__png = null; location.hash = '#{ymd(key)}'; }}")

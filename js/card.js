@@ -238,15 +238,19 @@
       ctx.fillText('── ' + entry.source, sourceRight, sourceY + 40);
     }
 
-    // 右下角的日曆名稱：圖卡被存下或截圖轉傳時，看得出出處。墊一層紙色柔光，壓在山景上也讀得到
+    // 日曆名稱放在出處那一行的左邊：存圖或截圖轉傳時看得出出處。
+    // 這一行在畫面中段，IG 貼文裁切、限時動態的上下介面都不會蓋到；出處太長擠到時改放下一行
     ctx.save();
-    ctx.textAlign = 'right';
+    ctx.textAlign = 'left';
     ctx.font = `400 26px ${BODY}`;
     if ('letterSpacing' in ctx) ctx.letterSpacing = '6px';
-    ctx.shadowColor = c.paper;
-    ctx.shadowBlur = 12 * ctx.getTransform().a;
+    const nameW = ctx.measureText('水墨日曆').width;
+    ctx.font = `400 32px ${DISPLAY}`;
+    const srcW = entry.source ? ctx.measureText('── ' + entry.source).width : 0;
+    const nameY = M + nameW + 40 < sourceRight - srcW ? sourceY + 40 : sourceY + 86;
+    ctx.font = `400 26px ${BODY}`;
     ctx.fillStyle = c.inkSoft;
-    ctx.fillText('水墨日曆', W - M + 6, H - 52);
+    ctx.fillText('水墨日曆', M, nameY);
     ctx.restore();
   }
 

@@ -158,6 +158,21 @@ body {
   background: var(--page);
 }
 .sheet-hint { margin: 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.format-toggle { display: flex; justify-content: center; gap: 8px; }
+.format-toggle button {
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  min-height: 36px;
+  padding: 0 14px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.format-toggle button[aria-pressed="true"] { opacity: 1; font-weight: 600; }
+.format-toggle button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .btn.with-icon { gap: 6px; padding: 0 14px 0 12px; }
 .btn.with-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 

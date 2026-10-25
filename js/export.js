@@ -1,4 +1,4 @@
-// 匯出 1080×1920 PNG：顯示圖片（手機可長按儲存），並提供分享與下載。
+// 匯出 PNG：1080×1920 長圖（限時動態、Threads）和 1080×1350 IG 貼文版，顯示圖片（手機可長按儲存），並提供分享與下載。
 // 在 claude.ai Artifact 裡，下載要透過平台的 downloads 能力（會先請觀看者確認）；
 // 其他環境（GitHub Pages、本機）用一般的瀏覽器下載。
 (function (global) {
@@ -14,12 +14,41 @@
       canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('圖片產生失敗'))), 'image/png'));
   }
 
+  // IG 貼文最高只到 4:5，直接上傳長圖會被裁掉上下。貼文版把整張圖卡縮進 4:5，
+  // 左右空白用同一張圖卡放大、模糊後墊底（先縮到很小再放大＝模糊，不依賴 ctx.filter，舊 Safari 也能用）
+  const POST_W = 1080, POST_H = 1350;
+  function postCanvas(card) {
+    const out = document.createElement('canvas');
+    out.width = POST_W;
+    out.height = POST_H;
+    const g = out.getContext('2d');
+    g.imageSmoothingEnabled = true;
+    g.imageSmoothingQuality = 'high';
+    let src = card;
+    for (const k of [8, 40]) {
+      const t = document.createElement('canvas');
+      t.width = Math.round(card.width / k);
+      t.height = Math.round(card.height / k);
+      t.getContext('2d').drawImage(src, 0, 0, t.width, t.height);
+      src = t;
+    }
+    const bgH = POST_W * card.height / card.width;
+    g.drawImage(src, 0, (POST_H - bgH) / 2, POST_W, bgH);
+    const h = POST_H, w = h * card.width / card.height;
+    g.shadowColor = 'rgba(0, 0, 0, 0.28)';
+    g.shadowBlur = 36;
+    g.drawImage(card, (POST_W - w) / 2, 0, w, h);
+    return out;
+  }
+
+  // 回傳 { story: 長圖, post: IG 貼文版 }
   async function makeImage(draw) {
     const canvas = document.createElement('canvas');
     canvas.width = Card.W;
     canvas.height = Card.H;
     draw(canvas.getContext('2d'));
-    return toBlob(canvas);
+    const [story, post] = await Promise.all([toBlob(canvas), toBlob(postCanvas(canvas))]);
+    return { story, post };
   }
 
   // iPadOS 13 以後會自稱 Mac，要用觸控點數分辨
@@ -42,18 +71,30 @@
   }
 
   // shareInfo：{ text, url }，給「脆」「LINE」按鈕用（只能帶文字與連結，圖卡要走上面的系統分享）
-  function openSheet(blob, filename, shareInfo) {
+  // images：makeImage 的結果；baseName：不含副檔名的檔名
+  let format = 'story';
+  function openSheet(images, baseName, shareInfo) {
     const sheet = document.getElementById('sheet');
     const img = document.getElementById('sheet-img');
     const dl = document.getElementById('sheet-download');
     const share = document.getElementById('sheet-share');
-    if (lastUrl) URL.revokeObjectURL(lastUrl);
-    lastUrl = URL.createObjectURL(blob);
-    img.src = lastUrl;
+    let blob, filename, file;
+    const pick = (f) => {
+      format = f;
+      blob = images[f];
+      filename = baseName + (f === 'post' ? '-IG貼文' : '') + '.png';
+      file = new File([blob], filename, { type: 'image/png' });
+      if (lastUrl) URL.revokeObjectURL(lastUrl);
+      lastUrl = URL.createObjectURL(blob);
+      img.src = lastUrl;
+      document.querySelectorAll('#format-toggle button').forEach((b) =>
+        b.setAttribute('aria-pressed', String(b.dataset.format === f)));
+    };
+    document.querySelectorAll('#format-toggle button').forEach((b) => { b.onclick = () => pick(b.dataset.format); });
+    pick(format);
 
     // Artifact 裡若平台不提供下載，就只留長按圖片的方式
     dl.hidden = inArtifact && !platformDownloads;
-    const file = new File([blob], filename, { type: 'image/png' });
     const canShare = !!(navigator.canShare && navigator.canShare({ files: [file] }));
     // iPhone／iPad 的瀏覽器下載會存進「檔案」App，不會進相簿；
     // 改叫出系統分享選單，裡面的「儲存影像」會直接存進照片。

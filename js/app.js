@@ -139,7 +139,7 @@
     try {
       const blob = await CardExport.makeImage((ctx) => draw(ctx, 1));
       const i = LunarInfo.info(current);
-      CardExport.openSheet(blob, `水墨日曆-${i.year}${pad(i.month)}${pad(i.day)}.png`, shareInfo(i));
+      CardExport.openSheet(blob, `水墨日曆-${i.year}${pad(i.month)}${pad(i.day)}`, shareInfo(i));
     } finally {
       btn.disabled = false;
       btn.innerHTML = label;

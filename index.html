@@ -58,6 +58,10 @@
 <div class="sheet" id="sheet" hidden>
   <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <p class="sheet-title" id="sheet-title">分享這一天</p>
+    <div class="format-toggle" id="format-toggle" role="group" aria-label="圖片尺寸">
+      <button type="button" data-format="story" aria-pressed="true">長圖・限時動態</button>
+      <button type="button" data-format="post" aria-pressed="false">IG 貼文 4:5</button>
+    </div>
     <img id="sheet-img" alt="這一天的圖卡">
     <div class="share-targets">
       <button type="button" id="sheet-share" class="share-target" hidden><span class="share-icon system"><svg viewBox="0 0 24 24" aria-hidden="true" class="stroke"><path d="M12 15V3M7 8l5-5 5 5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span>分享圖片</button>
