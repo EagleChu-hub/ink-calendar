@@ -12,7 +12,7 @@
 
   function fontsFor(entry, info) {
     const all = [entry.title, entry.quote, entry.text, entry.source, info.monthName, info.week,
-      info.lunarDate, info.jieqi, info.festivals.join(''), info.ganzhiYear, cnYear(info.year), '農曆0123456789'].join('');
+      info.lunarDate, info.jieqi, info.festivals.join(''), info.ganzhiYear, cnYear(info.year), '農曆0123456789水墨日曆'].join('');
     return [
       `400 60px ${DISPLAY}`, `700 60px ${DISPLAY}`, `300 60px ${BODY}`, `400 60px ${BODY}`,
     ].map((f) => document.fonts.load(f, all));
@@ -237,6 +237,17 @@
       ctx.font = `400 32px ${DISPLAY}`;
       ctx.fillText('── ' + entry.source, sourceRight, sourceY + 40);
     }
+
+    // 右下角的日曆名稱：圖卡被存下或截圖轉傳時，看得出出處。墊一層紙色柔光，壓在山景上也讀得到
+    ctx.save();
+    ctx.textAlign = 'right';
+    ctx.font = `400 26px ${BODY}`;
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '6px';
+    ctx.shadowColor = c.paper;
+    ctx.shadowBlur = 12 * ctx.getTransform().a;
+    ctx.fillStyle = c.inkSoft;
+    ctx.fillText('水墨日曆', W - M + 6, H - 52);
+    ctx.restore();
   }
 
   global.Card = { W, H, render, fontsFor };
