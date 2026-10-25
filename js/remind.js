@@ -29,10 +29,15 @@
     || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const standalone = navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
   const inArtifact = !!(window.claude && typeof window.claude.use === 'function');
+  // IG、FB、Threads、LINE 裡直接點開的內建瀏覽器不能推播，要先跳到 Safari／Chrome
+  const inApp = /Instagram|FBAN|FBAV|Barcelona|Line\//.test(navigator.userAgent);
 
   // 不能用的原因；null 表示可以用
   function blocker() {
     if (inArtifact) return '這個預覽環境不能開啟推播，請到正式網站開啟。';
+    if (inApp) {
+      return '你現在是在 IG、FB 或 LINE 裡面開的網頁，這裡不能開啟提醒。請點右上角（或右下角）的「⋯」→「用瀏覽器開啟」，' + (isIOS ? '在 Safari 裡把日曆加入主畫面後再開啟提醒。' : '在 Chrome 裡再按一次「每日提醒」。');
+    }
     if (isIOS && !standalone) {
       return 'iPhone、iPad 要先把日曆加入主畫面：用 Safari 打開本站 → 分享 →「加入主畫面」，再從主畫面的圖示打開，就能開啟提醒（需 iOS 16.4 以上）。';
     }
