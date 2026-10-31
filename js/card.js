@@ -118,7 +118,7 @@
    * @param scene Scene.prepare() 的結果；null 時改畫程序化山水
    */
   function render(ctx, entry, info, c, scene = null) {
-    const blank = !entry;
+    const blank = !entry || !!entry.blank;
     entry = entry || { title: '', quote: '今日留白', source: '', text: '這一天的短文還在研墨中。留一點空白給自己，也是一種功課。' };
     const seed = info.year * 10000 + info.month * 100 + info.day;
 

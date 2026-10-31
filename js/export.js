@@ -138,7 +138,8 @@
       `https://line.me/R/share?text=${encodeURIComponent(info.text + '\n' + info.url)}`);
 
     sheet.hidden = false;
-    document.getElementById('sheet-close').focus();
+    sheet.querySelector('.sheet-inner').scrollTop = 0;
+    document.getElementById('sheet-close').focus({ preventScroll: true });
   }
 
   function openShare(url) {

@@ -1,6 +1,6 @@
 // 離線快取：網頁、程式與每月內容用「先網路、失敗再用快取」；圖片、字型等素材用「先快取、背景更新」。
 // 改版時把 VERSION 加一，舊快取會自動清掉。
-const VERSION = 'ink-calendar-v16';
+const VERSION = 'ink-calendar-v17';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'css/style.css',
   'js/vendor/lunar.js', 'js/lunar-info.js', 'js/ink.js', 'js/scene.js', 'js/card.js', 'js/export.js', 'js/app.js', 'js/remind.js',
@@ -16,7 +16,8 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
+      // 兩個日曆在同一個網域、共用快取空間：只刪本站的舊版本，不要動到另一個日曆的快取
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith('ink-calendar-') && k !== VERSION).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
 });

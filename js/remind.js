@@ -143,7 +143,7 @@
     }
   }
 
-  function open() { sheet.hidden = false; refresh(); $('remind-close').focus(); }
+  function open() { sheet.hidden = false; refresh(); $('remind-close').focus({ preventScroll: true }); }
   function close() { sheet.hidden = true; $('remind').focus(); }
 
   $('remind').addEventListener('click', open);
