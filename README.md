@@ -10,6 +10,7 @@
 
 - 每日提醒：底部「每日提醒」選時間後開啟，每天在該整點（台北時間）收到當天的原文推播。iPhone 需 iOS 16.4 以上，並先「加入主畫面」再從主畫面開啟。Worker 只儲存瀏覽器的推播位址與時間。
 - 分享：按「分享」打開面板，可以用系統分享直接傳圖卡，或按 Threads、LINE 分享當天的句子與連結。連結是 `d/YYYYMMDD.html`（由 `python tools/build_share.py` 產生，改過內容要重跑），預覽圖是那一天的縮圖。
+- 字型：`python tools/build_fonts.py` 只把網站用得到的字做成 `fonts/*.woff2`（約 1～2 MB，涵蓋全部日子），改過語錄、節日或畫面文字後要重跑，再用 `--check` 確認沒有缺字。原始字型放在 `..\字型原檔\`（來自 github.com/google/fonts，SIL OFL），需要 `pip install fonttools brotli` 與 node。
 
 ## 資料夾
 

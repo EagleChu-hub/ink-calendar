@@ -1,8 +1,8 @@
 // 離線快取：網頁、程式與每月內容用「先網路、失敗再用快取」；圖片、字型等素材用「先快取、背景更新」。
 // 改版時把 VERSION 加一，舊快取會自動清掉。
-const VERSION = 'ink-calendar-v18';
+const VERSION = 'ink-calendar-v19';
 const CORE = [
-  './', 'index.html', 'manifest.webmanifest', 'css/style.css',
+  './', 'index.html', 'manifest.webmanifest', 'css/style.css', 'css/fonts.css',
   'js/vendor/lunar.js', 'js/lunar-info.js', 'js/ink.js', 'js/scene.js', 'js/card.js', 'js/export.js', 'js/app.js', 'js/remind.js',
   'data/festivals-tw.json', 'data/scenes.json', 'assets/seal/chosen.svg',
   'icons/icon-192.png', 'icons/favicon-32.png',
@@ -46,7 +46,21 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // 其他（含 Google Fonts）：有快取就先用，同時在背景更新
+  // 本站字型（tools/build_fonts.py 產生）：檔名帶內容雜湊、內容不會變，有快取就直接用，不必每次在背景重抓
+  if (url.origin === location.origin && url.pathname.includes('/fonts/')) {
+    e.respondWith(
+      caches.match(e.request).then((hit) => hit || fetch(e.request).then((res) => {
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(VERSION).then((c) => c.put(e.request, copy));
+        }
+        return res;
+      })),
+    );
+    return;
+  }
+
+  // 其他：有快取就先用，同時在背景更新
   e.respondWith(
     caches.match(e.request).then((hit) => {
       const net = fetch(e.request)

@@ -1,0 +1,22 @@
+/* 由 tools/build_fonts.py 產生，請勿手改 */
+@font-face {
+  font-family: 'LXGW WenKai TC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/wenkai-400.60ce6833f9.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'LXGW WenKai TC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/wenkai-700.b6f906c78f.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Serif TC';
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url('../fonts/notoserif-300-400.c2a6936d71.woff2') format('woff2');
+}
