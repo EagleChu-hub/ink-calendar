@@ -38,17 +38,19 @@ CHARSET = FONTS / 'charset.txt'
 
 # 每個網站用到的字型：(CSS 字型名稱, 原始檔, 字重或字重範圍, 輸出檔名前綴)
 SITES = {
-    '水墨日曆': [
+    'ink-calendar': [
         ('LXGW WenKai TC', 'LXGWWenKaiTC-Regular.ttf', 400, 'wenkai-400'),
         ('LXGW WenKai TC', 'LXGWWenKaiTC-Bold.ttf', 700, 'wenkai-700'),
         ('Noto Serif TC', 'NotoSerifTC[wght].ttf', (300, 400), 'notoserif-300-400'),
     ],
-    '動畫語錄日曆': [
+    'anime-calendar': [
         ('Noto Sans TC', 'NotoSansTC[wght].ttf', (200, 500), 'notosans-200-500'),
         ('Zen Kaku Gothic New', 'ZenKakuGothicNew-Regular.ttf', 400, 'zenkaku-400'),
     ],
 }
-FACES = SITES[ROOT.name]
+# 用 sw.js 的快取名稱判斷是哪個網站（資料夾名稱在每台電腦、GitHub 上都可能不同）
+SITE = re.search(r"VERSION = '(\w+-calendar)-v\d+'", (ROOT / 'sw.js').read_text(encoding='utf-8'))[1]
+FACES = SITES[SITE]
 
 # 農曆、節氣、干支：用網站自己的 lunar.js 把 2026～2035 每一天的字串算出來（比把整個 lunar.js 的字收進來少七百多字）
 LUNAR_JS = r"""
