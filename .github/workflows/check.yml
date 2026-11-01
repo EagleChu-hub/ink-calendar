@@ -1,0 +1,23 @@
+# 每次推上 GitHub 都檢查一次：分享頁、預覽圖、字型是否跟目前的語錄一致。
+# 沒通過時 GitHub 會寄信通知（換電腦、忘了開提交前檢查時的最後一道提醒）。
+# 語錄校對（tools/validate.py）要用到 sources/ 的古籍全文，那些檔沒放進 repo，只在本機的提交前檢查跑。
+name: 內容檢查
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: pip install pillow fonttools
+      - name: 分享頁與預覽圖（沒過 → 執行 python tools/build_share.py）
+        run: python tools/build_share.py --check
+      - name: 字型（沒過 → 執行 python tools/build_fonts.py）
+        run: python tools/build_fonts.py --check

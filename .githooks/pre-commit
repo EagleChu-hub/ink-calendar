@@ -1,0 +1,28 @@
+#!/bin/sh
+# 提交前自動檢查：改了語錄、節日或畫面文字，卻忘了重跑工具時，擋下這次提交並說明要跑什麼。
+# 啟用方式（每台電腦、每個資料夾做一次）：git config core.hooksPath .githooks
+export PYTHONIOENCODING=utf-8
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+fail=0
+run() {
+  name="$1"; fix="$2"; shift 2
+  out=$("$@" 2>&1)
+  if [ $? -ne 0 ]; then
+    echo "$out" | tail -12
+    echo "⛔ $name沒通過 → $fix"
+    echo
+    fail=1
+  fi
+}
+
+run "語錄校對" "依上面的提示修正 data/quotes" python tools/validate.py
+run "分享頁與預覽圖" "請執行 python tools/build_share.py" python tools/build_share.py --check
+run "字型" "請執行 python tools/build_fonts.py" python tools/build_fonts.py --check
+
+if [ $fail -ne 0 ]; then
+  echo "這次提交先暫停了。照上面跑完工具、把產生的檔案一起加進來，再提交一次。"
+  echo "（真的要略過檢查：git commit --no-verify）"
+  exit 1
+fi
+echo "✓ 提交前檢查通過（語錄、分享頁、字型）"
