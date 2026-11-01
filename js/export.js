@@ -121,13 +121,15 @@
     setHint(saveViaShare
       ? '「儲存圖片」→ 在選單點「儲存影像」就會存進照片。Threads、LINE 會附上這一天的句子和連結。'
       : canShare
-        ? '「分享圖片」會附上圖卡；Threads、LINE 會附上這一天的句子和連結。'
+        ? '「分享圖片」會附上圖卡和連結（有些 App 只會收圖）；Threads、LINE 會附上這一天的句子和連結。'
         : 'Threads、LINE 會附上這一天的句子和連結。手機上也可以長按圖片儲存。');
     share.onclick = async () => {
+      // 圖卡之外附上這一天的連結，收到的人才點得回來；有些 App 只收圖或只收文字，被拒絕時退回只分享圖
       try {
-        await navigator.share({ files: [file], title: '水墨日曆' });
+        await navigator.share({ files: [file], title: '水墨日曆', text: `${info.text}\n${info.url}` });
       } catch (e) {
-        /* 使用者取消分享或瀏覽器拒絕：保留面板讓他改用長按或下載 */
+        if (e && e.name === 'AbortError') return; /* 使用者取消 */
+        try { await navigator.share({ files: [file], title: '水墨日曆' }); } catch (e2) { /* 保留面板讓他改用長按或下載 */ }
       }
     };
 
@@ -136,6 +138,26 @@
       `https://www.threads.com/intent/post?text=${encodeURIComponent(info.text)}&url=${encodeURIComponent(info.url)}`);
     document.getElementById('share-line').onclick = () => openShare(
       `https://line.me/R/share?text=${encodeURIComponent(info.text + '\n' + info.url)}`);
+
+    // 圖卡上的字是畫出來的不能選取，所以另外提供複製
+    document.getElementById('share-copy').onclick = async () => {
+      const text = `${info.text}\n${info.url}`;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        // 舊瀏覽器或沒有剪貼簿權限：改用隱藏的文字框複製
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        ta.remove();
+        if (!ok) { setHint('這裡無法複製，請改用 Threads 或 LINE 分享。'); return; }
+      }
+      setHint('已複製這一天的句子和連結。');
+    };
 
     sheet.hidden = false;
     sheet.querySelector('.sheet-inner').scrollTop = 0;

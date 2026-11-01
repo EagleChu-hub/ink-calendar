@@ -25,21 +25,22 @@
     try { if (h === null) localStorage.removeItem(HOUR_KEY); else localStorage.setItem(HOUR_KEY, String(h)); } catch (e) { /* 無痕模式等情況：只影響顯示 */ }
   }
 
-  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent)
+  // 用函式而不是常數：每次打開面板時重新判斷（也方便換 userAgent 測各種手機）
+  const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent)
     || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const standalone = navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+  const standalone = () => navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
   const inArtifact = !!(window.claude && typeof window.claude.use === 'function');
   // IG、FB、Threads、LINE 裡直接點開的內建瀏覽器不能推播，要先跳到 Safari／Chrome
-  const inApp = /Instagram|FBAN|FBAV|Barcelona|Line\//.test(navigator.userAgent);
+  const inApp = () => /Instagram|FBAN|FBAV|Barcelona|Line\//.test(navigator.userAgent);
+  const IOS_STEPS = 'iPhone、iPad 要先把日曆加入主畫面，才能開啟提醒（需 iOS 16.4 以上）：';
 
   // 不能用的原因；null 表示可以用
   function blocker() {
     if (inArtifact) return '這個預覽環境不能開啟推播，請到正式網站開啟。';
-    if (inApp) {
-      return '你現在是在 IG、FB 或 LINE 裡面開的網頁，這裡不能開啟提醒。請點右上角（或右下角）的「⋯」→「用瀏覽器開啟」，' + (isIOS ? '在 Safari 裡把日曆加入主畫面後再開啟提醒。' : '在 Chrome 裡再按一次「每日提醒」。');
-    }
-    if (isIOS && !standalone) {
-      return 'iPhone、iPad 要先把日曆加入主畫面：用 Safari 打開本站 → 分享 →「加入主畫面」，再從主畫面的圖示打開，就能開啟提醒（需 iOS 16.4 以上）。';
+    // iPhone 不論在哪裡打開，都要先加入主畫面；下面的圖示步驟第一步就包含「從 IG、LINE 跳到 Safari」
+    if (isIOS() && !standalone()) return IOS_STEPS;
+    if (inApp()) {
+      return '你現在是在 IG、FB 或 LINE 裡面開的網頁，這裡不能開啟提醒。請點右上角（或右下角）的「⋯」→「用瀏覽器開啟」，在 Chrome 裡再按一次「每日提醒」。';
     }
     if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window) || !window.isSecureContext) {
       return '這個瀏覽器不支援推播通知。可以改用手機的 Chrome，或 iPhone 加入主畫面後使用。';
@@ -81,6 +82,7 @@
 
   async function refresh() {
     const why = blocker();
+    $('ios-steps').hidden = why !== IOS_STEPS;
     onBtn.disabled = !!why;
     select.disabled = !!why;
     offBtn.hidden = true;
@@ -143,7 +145,25 @@
     }
   }
 
-  function open() { sheet.hidden = false; refresh(); $('remind-close').focus({ preventScroll: true }); }
+  // 第二次以後打開網站、還沒開提醒的人，在下方輕輕提一次；按 ✕ 或打開過提醒面板就不再出現
+  const VISITS_KEY = `${APP}-visits`;
+  const HINT_OFF_KEY = `${APP}-remind-hint-off`;
+  function stored(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 無痕模式：只是每次都不提示 */ } }
+  // 提示列出現或收起會改變圖卡可用的高度，要通知 app.js 重新排版
+  function showHint(show) { $('remind-hint').hidden = !show; window.dispatchEvent(new Event('resize')); }
+  function hideHint() { if (!$('remind-hint').hidden) showHint(false); store(HINT_OFF_KEY, '1'); }
+  (async function maybeHint() {
+    const visits = Number(stored(VISITS_KEY) || 0) + 1;
+    store(VISITS_KEY, String(visits));
+    if (visits < 2 || stored(HINT_OFF_KEY) || inArtifact) return;
+    try { if (await currentSubscription()) return; } catch (e) { /* 不支援推播的瀏覽器：照樣提示，面板裡會說明怎麼辦 */ }
+    showHint(true);
+  })();
+  $('remind-hint-close').addEventListener('click', hideHint);
+  $('remind-hint-open').addEventListener('click', () => open());
+
+  function open() { hideHint(); sheet.hidden = false; refresh(); $('remind-close').focus({ preventScroll: true }); }
   function close() { sheet.hidden = true; $('remind').focus(); }
 
   $('remind').addEventListener('click', open);
