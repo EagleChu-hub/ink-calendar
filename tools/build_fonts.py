@@ -44,7 +44,7 @@ SITES = {
         ('Noto Serif TC', 'NotoSerifTC[wght].ttf', (300, 400), 'notoserif-300-400'),
     ],
     'anime-calendar': [
-        ('Noto Sans TC', 'NotoSansTC[wght].ttf', (200, 500), 'notosans-200-500'),
+        ('Noto Sans TC', 'NotoSansTC[wght].ttf', (200, 600), 'notosans-200-600'),
         ('Zen Kaku Gothic New', 'ZenKakuGothicNew-Regular.ttf', 400, 'zenkaku-400'),
     ],
 }
