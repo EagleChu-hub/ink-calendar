@@ -52,7 +52,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 圖卡在上、短文接在下面（往下捲閱讀），按鈕列固定在畫面底部 */
+/* 圖卡（含短文）一頁看完，按鈕列在畫面底部 */
 .app {
   min-height: 100%;
   display: flex;
@@ -61,21 +61,13 @@ body {
   padding-top: 16px;
   box-sizing: border-box;
 }
-.content { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 20px; padding-bottom: 24px; }
+.content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 12px; }
 
 .stage {
   display: grid;
   place-items: center;
   touch-action: pan-y;
 }
-
-/* 白話短文與出處：真正的網頁文字，手機上也有 17px */
-.reading { width: 100%; max-width: 34em; transition: opacity 0.18s ease; }
-.reading.fading { opacity: 0.35; }
-.reading p { margin: 0; }
-.read-essay { font-size: 17px; line-height: 1.95; color: var(--ink); text-align: justify; }
-.read-src { margin-top: 10px !important; font-family: var(--display); font-size: 15px; line-height: 1.6; text-align: right; color: var(--ink-soft); }
-.read-src:empty { display: none; }
 
 .dock {
   position: sticky;
@@ -87,14 +79,8 @@ body {
   margin-inline: -16px;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
   background: var(--page);
-  border-top: 1px solid var(--line);
 }
 
-/* 寬螢幕：圖卡和短文左右並排，不用往下捲 */
-@media (min-width: 820px) {
-  .content { flex-direction: row; justify-content: center; align-items: center; gap: 48px; }
-  .reading { max-width: 360px; }
-}
 .card {
   display: block;
   max-width: 100%;
@@ -298,7 +284,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card, .reading { transition: none; }
+  .card { transition: none; }
 }
 
 /* 連點換日時不要被當成雙擊放大（iPhone） */

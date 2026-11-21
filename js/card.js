@@ -116,20 +116,19 @@
    * @param info  LunarInfo.info() 的結果
    * @param c     色票 {paper, ink, inkSoft, seal, sealText, sun, dark}
    * @param scene Scene.prepare() 的結果；null 時改畫程序化山水
-   * @param full  true＝分享圖（完整版面）；false＝網頁畫面：不畫短文與出處（改在圖卡下方用網頁文字顯示，字才夠大），山水往上補滿
    */
-  function render(ctx, entry, info, c, scene = null, full = true) {
+  function render(ctx, entry, info, c, scene = null) {
     const blank = !entry || !!entry.blank;
     entry = entry || { title: '', quote: '今日留白', source: '', text: '這一天的短文還在研墨中。留一點空白給自己，也是一種功課。' };
     const seed = info.year * 10000 + info.month * 100 + info.day;
 
     // 先排版文字，得知山景可以從哪裡開始
     ctx.font = `400 44px ${BODY}`;
-    const bodyLines = full ? wrap(ctx, entry.text, W - M * 2) : [];
+    const bodyLines = wrap(ctx, entry.text, W - M * 2);
     const bodyTop = 1000, lh = 78;
     const bodyEnd = bodyTop + bodyLines.length * lh;
     const sourceY = bodyEnd + 40;
-    const inkTop = full ? Math.max(sourceY + 90, 1270) : 960;
+    const inkTop = Math.max(sourceY + 90, 1270);
 
     const bg = { seed, month: info.month, dark: c.dark, paper: c.paper, ink: c.ink, sun: c.sun, top: inkTop };
     if (scene) {
@@ -216,8 +215,6 @@
       }
     });
 
-    if (!full) return;
-
     // 白話短文
     ctx.textBaseline = 'alphabetic';
     ctx.textAlign = 'left';
@@ -238,7 +235,7 @@
     if (entry.source) {
       ctx.textAlign = 'right';
       ctx.fillStyle = c.inkSoft;
-      ctx.font = `400 36px ${DISPLAY}`;
+      ctx.font = `400 40px ${DISPLAY}`;
       ctx.fillText('── ' + entry.source, sourceRight, sourceY + 40);
     }
 
@@ -249,7 +246,7 @@
     ctx.font = `400 26px ${BODY}`;
     if ('letterSpacing' in ctx) ctx.letterSpacing = '6px';
     const nameW = ctx.measureText('水墨日曆').width;
-    ctx.font = `400 36px ${DISPLAY}`;
+    ctx.font = `400 40px ${DISPLAY}`;
     const srcW = entry.source ? ctx.measureText('── ' + entry.source).width : 0;
     const nameY = M + nameW + 40 < sourceRight - srcW ? sourceY + 40 : sourceY + 86;
     ctx.font = `400 26px ${BODY}`;

@@ -4,19 +4,19 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../fonts/wenkai-400.cd6bec6f8c.woff2') format('woff2');
+  src: url('../fonts/wenkai-400.b69d3d0d51.woff2') format('woff2');
 }
 @font-face {
   font-family: 'LXGW WenKai TC';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../fonts/wenkai-700.aedcf06893.woff2') format('woff2');
+  src: url('../fonts/wenkai-700.8b72d429f3.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Noto Serif TC';
   font-style: normal;
   font-weight: 300 400;
   font-display: swap;
-  src: url('../fonts/notoserif-300-400.bda79182d0.woff2') format('woff2');
+  src: url('../fonts/notoserif-300-400.d519a6972f.woff2') format('woff2');
 }
