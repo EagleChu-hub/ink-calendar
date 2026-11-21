@@ -56,10 +56,19 @@
 
   let scene = null; // 目前這一天、這個主題的山水場景（Scene.prepare 的結果）
 
-  function draw(ctx, scale) {
+  // full：true＝分享圖（完整版面）；false＝網頁上那張（沒有短文與出處，改在圖卡下方用網頁文字顯示）
+  function draw(ctx, scale, full = false) {
     const info = LunarInfo.info(current);
     ctx.setTransform(scale, 0, 0, scale, 0, 0);
-    Card.render(ctx, shown(), info, palette(), scene);
+    Card.render(ctx, shown(), info, palette(), scene, full);
+  }
+
+  // 圖卡下方的出處與白話短文
+  const BLANK_TEXT = '這一天的短文還在研墨中。留一點空白給自己，也是一種功課。';
+  function fillReading(e) {
+    $('read-src').textContent = e && !e.blank && e.source ? '── ' + e.source : '';
+    $('read-essay').textContent = e ? e.text : BLANK_TEXT;
+    $('reading').classList.remove('fading');
   }
 
   async function prepareScene(info) {
@@ -71,10 +80,20 @@
     }
   }
 
+  // 圖卡大小：手機上留一點高度給下方的短文（露出開頭兩行，讓人知道往下還有字）；寬螢幕時短文在右邊。
+  // 高度用 #vh-probe（100svh：網址列、工具列展開時的高度）而不是 innerHeight：
+  // 手機往下捲時工具列收起來，innerHeight 會變大，用它算的話圖卡會跟著忽大忽小
+  const PEEK = 88, SIDE = 360 + 48;
+  let sized = null;
   function layout() {
-    const r = stage.getBoundingClientRect();
-    const h = Math.max(200, Math.min(r.height, r.width * 16 / 9));
-    const w = h * 9 / 16;
+    const wide = matchMedia('(min-width: 820px)').matches;
+    const vw = document.documentElement.clientWidth - 32;
+    const availH = $('vh-probe').offsetHeight - $('dock').offsetHeight - 16 - (wide ? 24 : PEEK);
+    const availW = wide ? vw - SIDE : vw;
+    // 寬度取整數像素，canvas 才不會被拉伸
+    const w = Math.floor(Math.max(200, Math.min(availH, availW * 16 / 9)) * 9 / 16);
+    const h = w * 16 / 9;
+    sized = { vw, dock: $('dock').offsetHeight, vh: $('vh-probe').offsetHeight };
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
     const dpr = Math.min(window.devicePixelRatio || 1, 3);
@@ -93,9 +112,10 @@
     const entry = shown();
     $('date-label').textContent = `${info.year}/${pad(info.month)}/${pad(info.day)}`;
     $('date-input').value = `${info.year}-${pad(info.month)}-${pad(info.day)}`;
+    // 圖卡的替代文字只放日期和原文；出處、短文在下方本來就是文字
     $('card-text').textContent = entry && !entry.blank
-      ? `${info.year}年${info.monthName}${info.day}日 ${info.week}，農曆${info.lunarDate}。${entry.title}：「${entry.quote}」── ${entry.source}。${entry.text}`
-      : `${info.year}年${info.monthName}${info.day}日 ${info.week}，農曆${info.lunarDate}。${entry ? entry.text : ''}`;
+      ? `${info.year}年${info.monthName}${info.day}日 ${info.week}，農曆${info.lunarDate}。${entry.title}：「${entry.quote}」`
+      : `${info.year}年${info.monthName}${info.day}日 ${info.week}，農曆${info.lunarDate}。${entry ? entry.quote : '今日留白'}`;
 
     // 等待這張卡用到的字形與山水素材都載入後再畫，避免先以後備字型閃一下
     const scenePromise = prepareScene(info);
@@ -111,6 +131,7 @@
     if (token !== renderToken) return;
     scene = prepared;
     draw(canvas.getContext('2d'), canvas.width / Card.W);
+    fillReading(entry);
     canvas.classList.remove('fading');
     document.documentElement.dataset.rendered = keyOf(current); // 給 tools/build_share.py 判斷這一天畫完了
     // 字型超過 2.5 秒才到的話，剛才是用後備字型畫的；字型到了再重畫一次
@@ -120,6 +141,7 @@
   function go(days) {
     current = new Date(current.getFullYear(), current.getMonth(), current.getDate() + days);
     canvas.classList.add('fading');
+    $('reading').classList.add('fading');
     render();
   }
 
@@ -165,7 +187,7 @@
     btn.disabled = true;
     btn.textContent = '產生中…';
     try {
-      const blob = await CardExport.makeImage((ctx) => draw(ctx, 1));
+      const blob = await CardExport.makeImage((ctx) => draw(ctx, 1, true));
       const i = LunarInfo.info(current);
       CardExport.openSheet(blob, `水墨日曆-${i.year}${pad(i.month)}${pad(i.day)}`, shareInfo(i));
     } finally {
@@ -202,10 +224,18 @@
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
+  // 只有寬度改變（轉向、調整視窗）或按鈕列高度改變（提醒提示列出現、關閉）才需要重排；
+  // 手機上只有高度變（捲動時網址列收合）一律不動，圖卡才不會跳；電腦版拉高視窗時照常放大
+  function relayoutIfNeeded() {
+    const vw = document.documentElement.clientWidth - 32;
+    const sameH = matchMedia('(pointer: coarse)').matches || sized?.vh === $('vh-probe').offsetHeight;
+    if (sized && sized.vw === vw && sized.dock === $('dock').offsetHeight && sameH) return;
+    layout(); render();
+  }
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { layout(); render(); }, 120);
+    resizeTimer = setTimeout(relayoutIfNeeded, 120);
   });
 
   // 跨日時自動換到新的一天（App 一直開著的情況）
@@ -227,6 +257,9 @@
     layout();
     const f = await loadJSON('data/festivals-tw.json');
     if (f) LunarInfo.setFestivals(f);
+    // 一開始量按鈕列時字型可能還沒到，高度差一兩 px；字型到齊後先校正一次，
+    // 免得等到使用者第一次捲動（網址列收合觸發 resize）才重排，看起來像圖卡跳了一下
+    document.fonts.ready.then(relayoutIfNeeded);
     await render();
   })();
 

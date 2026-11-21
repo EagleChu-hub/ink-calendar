@@ -23,20 +23,30 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="水墨日曆">
 <!-- FONTS:START 由 tools/build_fonts.py 產生 -->
-<link rel="preload" href="fonts/wenkai-400.60ce6833f9.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/wenkai-700.b6f906c78f.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/notoserif-300-400.c2a6936d71.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/wenkai-400.cd6bec6f8c.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/wenkai-700.aedcf06893.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/notoserif-300-400.bda79182d0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/fonts.css">
 <!-- FONTS:END -->
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- 量「工具列展開時」的穩定可視高度（100svh），圖卡大小以它為準，捲動時網址列收合不會讓圖卡跳動 -->
+<div id="vh-probe" aria-hidden="true"></div>
 <main class="app">
-  <div class="stage" id="stage">
-    <canvas id="card" class="card" role="img" aria-labelledby="card-text"></canvas>
+  <div class="content">
+    <div class="stage" id="stage">
+      <canvas id="card" class="card" role="img" aria-labelledby="card-text"></canvas>
+    </div>
+    <div id="card-text" class="sr-only" aria-live="polite"></div>
+    <!-- 出處、白話短文：圖卡縮在手機上字太小，改用網頁文字顯示（分享圖上仍然有） -->
+    <section class="reading" id="reading" aria-label="出處與短文">
+      <p class="read-essay" id="read-essay"></p>
+      <p class="read-src" id="read-src"></p>
+    </section>
   </div>
-  <div id="card-text" class="sr-only" aria-live="polite"></div>
 
+  <div class="dock" id="dock">
   <nav class="bar" aria-label="日期">
     <button type="button" id="prev" class="btn icon" aria-label="前一天">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
@@ -60,6 +70,7 @@
   <div class="remind-hint" id="remind-hint" hidden>
     <button type="button" id="remind-hint-open" class="remind-hint-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>想每天收到這一頁？開啟每日提醒</button>
     <button type="button" id="remind-hint-close" class="remind-hint-close" aria-label="不再提示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
   </div>
 </main>
 

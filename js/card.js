@@ -116,19 +116,20 @@
    * @param info  LunarInfo.info() 的結果
    * @param c     色票 {paper, ink, inkSoft, seal, sealText, sun, dark}
    * @param scene Scene.prepare() 的結果；null 時改畫程序化山水
+   * @param full  true＝分享圖（完整版面）；false＝網頁畫面：不畫短文與出處（改在圖卡下方用網頁文字顯示，字才夠大），山水往上補滿
    */
-  function render(ctx, entry, info, c, scene = null) {
+  function render(ctx, entry, info, c, scene = null, full = true) {
     const blank = !entry || !!entry.blank;
     entry = entry || { title: '', quote: '今日留白', source: '', text: '這一天的短文還在研墨中。留一點空白給自己，也是一種功課。' };
     const seed = info.year * 10000 + info.month * 100 + info.day;
 
     // 先排版文字，得知山景可以從哪裡開始
-    ctx.font = `400 40px ${BODY}`;
-    const bodyLines = wrap(ctx, entry.text, W - M * 2);
-    const bodyTop = 1000, lh = 74;
+    ctx.font = `400 44px ${BODY}`;
+    const bodyLines = full ? wrap(ctx, entry.text, W - M * 2) : [];
+    const bodyTop = 1000, lh = 78;
     const bodyEnd = bodyTop + bodyLines.length * lh;
     const sourceY = bodyEnd + 40;
-    const inkTop = Math.max(sourceY + 90, 1270);
+    const inkTop = full ? Math.max(sourceY + 90, 1270) : 960;
 
     const bg = { seed, month: info.month, dark: c.dark, paper: c.paper, ink: c.ink, sun: c.sun, top: inkTop };
     if (scene) {
@@ -142,7 +143,7 @@
 
     // 年
     ctx.fillStyle = c.inkSoft;
-    ctx.font = `400 32px ${BODY}`;
+    ctx.font = `400 38px ${BODY}`;
     ctx.textAlign = 'left';
     ctx.fillText(cnYear(info.year), M, 150);
     ctx.textAlign = 'right';
@@ -166,15 +167,16 @@
     ctx.font = `300 290px ${BODY}`;
     const dayRight = M - 12 + ctx.measureText(LunarInfo.pad(info.day)).width;
     ctx.fillText(LunarInfo.pad(info.day), M - 12, 560);
-    ctx.font = `400 40px ${DISPLAY}`;
-    ctx.fillText(info.week, M, 640);
+    // 星期、農曆放大：縮成手機畫面時原本只有 11～12px，看不清楚
+    ctx.font = `700 52px ${DISPLAY}`;
+    ctx.fillText(info.week, M, 654);
     ctx.fillStyle = c.inkSoft;
-    ctx.font = `400 34px ${BODY}`;
-    ctx.fillText('農曆' + info.lunarDate, M, 700);
+    ctx.font = `400 42px ${BODY}`;
+    ctx.fillText('農曆' + info.lunarDate, M, 718);
 
     let cx = M;
     for (const label of [info.jieqi, ...info.festivals].filter(Boolean)) {
-      cx += chip(ctx, cx, 732, label, c) + 16;
+      cx += chip(ctx, cx, 748, label, c) + 16;
     }
 
     // 右欄：直書原文，由右至左。
@@ -214,12 +216,14 @@
       }
     });
 
+    if (!full) return;
+
     // 白話短文
     ctx.textBaseline = 'alphabetic';
     ctx.textAlign = 'left';
     ctx.fillStyle = c.ink;
-    ctx.font = `400 40px ${BODY}`;
-    bodyLines.forEach((ln, i) => ctx.fillText(ln, M, bodyTop + 40 + i * lh));
+    ctx.font = `400 44px ${BODY}`;
+    bodyLines.forEach((ln, i) => ctx.fillText(ln, M, bodyTop + 44 + i * lh));
 
     // 出處，後面接著蓋篆書落款章（像書畫題款後的名章）
     let sourceRight = W - M;
@@ -234,7 +238,7 @@
     if (entry.source) {
       ctx.textAlign = 'right';
       ctx.fillStyle = c.inkSoft;
-      ctx.font = `400 32px ${DISPLAY}`;
+      ctx.font = `400 36px ${DISPLAY}`;
       ctx.fillText('── ' + entry.source, sourceRight, sourceY + 40);
     }
 
@@ -245,7 +249,7 @@
     ctx.font = `400 26px ${BODY}`;
     if ('letterSpacing' in ctx) ctx.letterSpacing = '6px';
     const nameW = ctx.measureText('水墨日曆').width;
-    ctx.font = `400 32px ${DISPLAY}`;
+    ctx.font = `400 36px ${DISPLAY}`;
     const srcW = entry.source ? ctx.measureText('── ' + entry.source).width : 0;
     const nameY = M + nameW + 40 < sourceRight - srcW ? sourceY + 40 : sourceY + 86;
     ctx.font = `400 26px ${BODY}`;
